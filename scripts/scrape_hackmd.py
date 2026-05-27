@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import argparse
 import re
+import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 from datetime import datetime
 
 from event_utils import TIME_RANGES, event_exists, load_events, next_event_id, save_events
@@ -13,8 +15,15 @@ LINE_PATTERN = re.compile(r"(?P<date>\d{4}-\d{2}-\d{2})\s*[|,-]\s*(?P<title>[^|]
 
 
 def fetch_text(url: str) -> str:
-    with urllib.request.urlopen(url, timeout=30) as response:
-        return response.read().decode("utf-8", errors="replace")
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError(f"Unsupported source URL: {url}")
+
+    try:
+        with urllib.request.urlopen(url, timeout=30) as response:
+            return response.read().decode("utf-8", errors="replace")
+    except urllib.error.URLError as error:
+        raise RuntimeError(f"Failed to fetch source URL {url}") from error
 
 
 def infer_timeframe(text_line: str) -> str:

@@ -49,6 +49,11 @@ body:
     validations:
       required: true
   - type: input
+    id: venue_name
+    attributes:
+      label: "Venue Name (optional)"
+      placeholder: "e.g., The Mid-Manhattan Pizza Co."
+  - type: input
     id: neighborhood
     attributes:
       label: "Neighborhood (optional)"

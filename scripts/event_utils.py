@@ -85,7 +85,7 @@ def build_event_from_submission(fields: dict[str, str], issue_number: int, exist
         "end_time": end_time,
         "timezone": "America/New_York",
         "location": {
-            "name": fields.get("neighborhood (optional)", "TBD"),
+            "name": fields.get("venue name (optional)", fields.get("address (optional)", "TBD")),
             "neighborhood": fields.get("neighborhood (optional)", "TBD"),
             "address": fields.get("address (optional)", "TBD"),
         },

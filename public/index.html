@@ -48,15 +48,34 @@
       const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
       const UN_LINK = "https://www.un.org/en/open-source-week";
 
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function safeUrl(value) {
+        try {
+          const url = new URL(value);
+          return ["http:", "https:"].includes(url.protocol) ? url.toString() : "#";
+        } catch {
+          return "#";
+        }
+      }
+
       function cardMarkup(event) {
         const location = event.location?.name || event.location?.address || "NYC";
+        const safeHref = safeUrl(event.original_source_url);
         return `
           <article class="card">
-            <h3>${event.title}</h3>
-            <p><strong>${event.event_date}</strong> · ${event.start_time}–${event.end_time}</p>
-            <p>${event.summary}</p>
-            <p><strong>Organizer:</strong> ${event.organizer}<br /><strong>Location:</strong> ${location}</p>
-            <a class="cta" href="${event.original_source_url}" target="_blank" rel="noopener">👉 View Original Event & RSVP</a>
+            <h3>${escapeHtml(event.title)}</h3>
+            <p><strong>${escapeHtml(event.event_date)}</strong> · ${escapeHtml(event.start_time)}–${escapeHtml(event.end_time)}</p>
+            <p>${escapeHtml(event.summary)}</p>
+            <p><strong>Organizer:</strong> ${escapeHtml(event.organizer)}<br /><strong>Location:</strong> ${escapeHtml(location)}</p>
+            <a class="cta" href="${safeHref}" target="_blank" rel="noopener">👉 View Original Event & RSVP</a>
           </article>
         `;
       }
@@ -80,7 +99,7 @@
             name: event.organizer || "Community Organizer"
           },
           description: event.summary,
-          url: event.original_source_url
+          url: safeUrl(event.original_source_url)
         };
         const script = document.createElement("script");
         script.type = "application/ld+json";
