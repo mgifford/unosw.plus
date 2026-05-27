@@ -407,6 +407,138 @@
       .qa-icon { font-size: 1.6rem; line-height: 1; }
       .qa-card strong { font-size: 0.97rem; color: var(--navy); }
       .qa-card span { font-size: 0.85rem; color: var(--text-muted); }
+
+      /* ─── 2025 Retrospective ─── */
+      .retro-section {
+        margin: 2rem 0;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      .retro-header {
+        background: linear-gradient(90deg, var(--navy) 0%, var(--un-blue-deeper) 100%);
+        color: #fff;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .retro-header h2 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 800;
+      }
+      .retro-header .year-badge {
+        background: var(--accent);
+        color: var(--navy);
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .retro-body {
+        padding: 1.25rem;
+      }
+      .retro-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1.1rem;
+      }
+      .retro-stat {
+        text-align: center;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.8rem 0.5rem;
+      }
+      .retro-stat-value {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--un-blue-deeper);
+        line-height: 1.1;
+      }
+      .retro-stat-label {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+      .retro-quote {
+        border-left: 3px solid var(--un-blue);
+        padding: 0.6rem 1rem;
+        margin: 0 0 1rem;
+        font-style: italic;
+        font-size: 0.93rem;
+        color: var(--text-muted);
+      }
+      .retro-quote cite {
+        display: block;
+        font-style: normal;
+        font-size: 0.82rem;
+        margin-top: 0.3rem;
+        color: var(--navy);
+        font-weight: 600;
+      }
+      .retro-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.25rem;
+      }
+      .retro-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        text-decoration: none;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .retro-link-primary {
+        background: var(--navy);
+        color: #fff;
+      }
+      .retro-link-primary:hover { background: var(--navy-mid); }
+      .retro-link-secondary {
+        background: var(--bg);
+        color: var(--navy);
+        border: 1.5px solid var(--border);
+      }
+      .retro-link-secondary:hover { border-color: var(--un-blue); color: var(--un-blue-deeper); }
+
+      /* ─── Ecosystem partners ─── */
+      .partners-section {
+        margin: 2rem 0;
+      }
+      .partners-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+      }
+      .partner-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.83rem;
+        font-weight: 600;
+        color: var(--navy);
+        text-decoration: none;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .partner-chip:hover { border-color: var(--un-blue); color: var(--un-blue-deeper); }
+      .partner-chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
     </style>
   </head>
   <body>
@@ -495,6 +627,88 @@
         · <a href="https://hackmd.io/@dpga/Sk05Nc21Me" target="_blank" rel="noopener noreferrer">DPGA Community Pad<span class="visually-hidden"> (opens in new tab)</span></a>
         <span aria-hidden="true">·</span> <em>OSW+ NYC is a community fringe calendar — not an official UN event.</em>
       </aside>
+
+      <!-- ─── 2025 Retrospective ─── -->
+      <section class="retro-section" aria-labelledby="retro-heading">
+        <div class="retro-header">
+          <span class="year-badge">2025</span>
+          <h2 id="retro-heading">Looking Back: UN Open Source Week 2025</h2>
+        </div>
+        <div class="retro-body">
+          <div class="retro-stats" aria-label="2025 event statistics">
+            <div class="retro-stat">
+              <span class="retro-stat-value">1,000+</span>
+              <span class="retro-stat-label">Participants</span>
+            </div>
+            <div class="retro-stat">
+              <span class="retro-stat-value">75</span>
+              <span class="retro-stat-label">Countries</span>
+            </div>
+            <div class="retro-stat">
+              <span class="retro-stat-value">160+</span>
+              <span class="retro-stat-label">Speakers</span>
+            </div>
+            <div class="retro-stat">
+              <span class="retro-stat-value">~100</span>
+              <span class="retro-stat-label">Sponsors &amp; Partners</span>
+            </div>
+            <div class="retro-stat">
+              <span class="retro-stat-value">5</span>
+              <span class="retro-stat-label">Days · June 16–20</span>
+            </div>
+          </div>
+          <blockquote class="retro-quote">
+            "Open source technologies are not just tools; they are building blocks for inclusive development,
+            transparent governance, and shared innovation."
+            <cite>— Ambassador Maurizio Massari, Permanent Representative of Italy to the UN</cite>
+          </blockquote>
+          <p style="font-size:0.92rem;color:var(--text-muted);margin:0 0 1rem;">
+            The 2025 edition combined hands-on hackathons (81 participants, 21 teams building climate tools for UNICEF),
+            an Edit-A-Thon that generated 2 million Wikipedia views, a Maintain-A-Thon with 40+ maintainers,
+            the third annual OSPOs for Good track, an inaugural DPI Day co-hosted by the Dominican Republic and Nigeria,
+            and a Community Day with 20 sessions across 5 tracks hosted at PwC New York.
+            The series grew from a small 2023 gathering to the <em>OSPOs for Good 2024</em> symposium (July 9–10, 2024)
+            before expanding to a full week in 2025. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0<span class="visually-hidden"> (opens in new tab)</span></a>.
+          </p>
+          <div class="retro-links">
+            <a class="retro-link retro-link-primary"
+               href="https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf"
+               target="_blank" rel="noopener noreferrer">
+              📄 Read the 2025 Report (PDF)<span class="visually-hidden"> (opens in new tab)</span>
+            </a>
+            <a class="retro-link retro-link-secondary"
+               href="2025-resources.html">
+              🎥 2025 Sessions &amp; Resources
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Ecosystem & Key Partners ─── -->
+      <section class="partners-section section" aria-labelledby="partners-heading">
+        <h2 id="partners-heading" class="section-heading">
+          Ecosystem &amp; Key Partners
+        </h2>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin:0 0 0.75rem;">
+          Recurring co-organizers and community partners shaping UN Open Source Week every year:
+        </p>
+        <div class="partners-grid" role="list">
+          <a class="partner-chip" href="https://www.unicef.org/" target="_blank" rel="noopener noreferrer" role="listitem">🟦 UNICEF<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://digitalpublicgoods.net/" target="_blank" rel="noopener noreferrer" role="listitem">🌐 Digital Public Goods Alliance<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://openforumeurope.org/" target="_blank" rel="noopener noreferrer" role="listitem">🇪🇺 OpenForum Europe<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://www.ri.se/en" target="_blank" rel="noopener noreferrer" role="listitem">🔬 RISE Research Institutes of Sweden<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://www.sovereigntechfund.de/" target="_blank" rel="noopener noreferrer" role="listitem">🛡️ Sovereign Tech Agency<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://alpha-omega.dev/" target="_blank" rel="noopener noreferrer" role="listitem">⚡ Alpha-Omega<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://chaoss.community/" target="_blank" rel="noopener noreferrer" role="listitem">📊 CHAOSS<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://innersourcecommons.org/" target="_blank" rel="noopener noreferrer" role="listitem">🔄 InnerSource Commons<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://curioss.org/" target="_blank" rel="noopener noreferrer" role="listitem">🎓 CURIOSS<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://govstack.global/" target="_blank" rel="noopener noreferrer" role="listitem">🏛️ GovStack<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://www.softwareheritage.org/" target="_blank" rel="noopener noreferrer" role="listitem">📚 Software Heritage<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://wikimediafoundation.org/" target="_blank" rel="noopener noreferrer" role="listitem">📖 Wikimedia Foundation<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://www.linuxfoundation.org/" target="_blank" rel="noopener noreferrer" role="listitem">🐧 Linux Foundation<span class="visually-hidden"> (opens in new tab)</span></a>
+          <a class="partner-chip" href="https://opensource.org/" target="_blank" rel="noopener noreferrer" role="listitem">✅ Open Source Initiative<span class="visually-hidden"> (opens in new tab)</span></a>
+        </div>
+      </section>
 
       <section class="section" aria-labelledby="runway-heading">
         <h2 id="runway-heading" class="section-heading">
