@@ -1,6 +1,6 @@
 # Contributing Places to OSW+ NYC
 
-OSW+ NYC maintains a community-curated list of coffee spots, food options, parks, and evening venues near the UN for attendees of [UN Open Source Week](https://www.un.org/en/open-source-week).
+OSW+ NYC maintains a community-curated list of coffee spots, food options, parks, and evening venues near the UN for attendees of [UN Open Source Week](https://www.unopensource.org/).
 
 > **Inspired by** [Food-W3C-Kobe](https://github.com/mgifford/Food-W3C-Kobe) — a similar guide used at W3C TPAC 2025.
 
@@ -78,4 +78,4 @@ This reads `data/places.csv`, looks up missing coordinates via the [Nominatim OS
 
 ## Questions?
 
-Open a [GitHub Discussion](https://github.com/mgifford/OSW_plus/discussions) or ping the maintainers in the issue tracker.
+Open a [GitHub Issue](https://github.com/mgifford/OSW_plus/issues) to ask a question or ping the maintainers.
