@@ -4,10 +4,11 @@
   'use strict';
 
   var PAGES = [
-    { href: 'index.html',         label: '🏠 Home' },
-    { href: 'events.html',        label: '📋 Events' },
-    { href: 'calendar-view.html', label: '📅 Calendar' },
-    { href: 'places-map.html',    label: '☕ Meet Up / Food / Coffee' }
+    { href: 'index.html',           label: '🏠 Home' },
+    { href: 'events.html',          label: '📋 Events' },
+    { href: 'calendar-view.html',   label: '📅 Calendar' },
+    { href: 'places-map.html',      label: '☕ Meet Up / Food / Coffee' },
+    { href: '2025-resources.html',  label: '🗓️ 2025 Resources' }
   ];
 
   var SUBMIT_EVENT_URL = 'https://github.com/mgifford/OSW_plus/issues/new?template=submit-event.yml';

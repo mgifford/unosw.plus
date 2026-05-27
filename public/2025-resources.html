@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2025 Resources · OSW+ NYC</title>
+    <meta name="description" content="Session summaries, presentations, and video recordings from UN Open Source Week 2025 (June 16–20, New York). Licensed CC BY 4.0." />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+      :root {
+        --un-blue: #009EDB;
+        --un-blue-dark: #007db3;
+        --un-blue-deeper: #005a87;
+        --navy: #0d1f3c;
+        --navy-mid: #1a3558;
+        --accent: #f59e0b;
+        --bg: #f0f4f8;
+        --surface: #ffffff;
+        --border: #d1dce8;
+        --text: #0d1f3c;
+        --text-muted: #4a6080;
+        color-scheme: light;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+      .skip-link {
+        position: absolute; top: -100%; left: 0;
+        background: var(--navy); color: #fff;
+        padding: 0.5rem 1rem; text-decoration: none;
+        font-weight: 700; z-index: 9999;
+        border-radius: 0 0 0.5rem 0;
+      }
+      .skip-link:focus { top: 0; }
+
+      /* ─── Page header ─── */
+      .page-header {
+        background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--un-blue-deeper) 100%);
+        color: #fff;
+        padding: 2rem 1.5rem;
+      }
+      .page-header-inner { max-width: 1080px; margin: 0 auto; }
+      .page-header h1 {
+        margin: 0 0 0.35rem;
+        font-size: clamp(1.4rem, 3.5vw, 2rem);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+      .page-header p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #b8d4e8;
+        max-width: 680px;
+      }
+      .page-header .license-badge {
+        display: inline-block;
+        margin-top: 0.75rem;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.25);
+        border-radius: 0.4rem;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+        color: #d0e8f5;
+      }
+
+      /* ─── Layout ─── */
+      main { max-width: 1080px; margin: 0 auto; padding: 1.5rem; }
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.25rem 1.5rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        background: var(--surface);
+      }
+
+      h2 { margin: 0 0 0.5rem; }
+      h3 { margin: 0 0 0.3rem; font-size: 1rem; }
+
+      /* ─── Section headings ─── */
+      .section { margin-top: 2rem; }
+      .section-heading {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--navy);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid var(--un-blue);
+      }
+      .day-badge {
+        display: inline-block;
+        background: var(--un-blue-deeper);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* ─── Session cards ─── */
+      .session-grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .session-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1.1rem 1.25rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      .session-card h3 { color: var(--navy); }
+      .session-meta {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin: 0.2rem 0 0.6rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .session-meta span { display: inline-flex; align-items: center; gap: 0.2rem; }
+      .session-desc {
+        font-size: 0.91rem;
+        color: var(--text);
+        margin: 0 0 0.75rem;
+      }
+      .session-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .session-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        text-decoration: none;
+        padding: 0.35rem 0.65rem;
+        border-radius: 0.45rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+      .link-report {
+        background: var(--navy);
+        color: #fff;
+      }
+      .link-report:hover { background: var(--navy-mid); }
+      .link-video {
+        background: #dc2626;
+        color: #fff;
+      }
+      .link-video:hover { background: #b91c1c; }
+      .link-web {
+        background: var(--bg);
+        color: var(--navy);
+        border: 1.5px solid var(--border);
+      }
+      .link-web:hover { border-color: var(--un-blue); color: var(--un-blue-deeper); }
+
+      /* ─── Top highlights bar ─── */
+      .highlights-bar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+      }
+      .highlight-stat {
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.8rem 0.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      .highlight-value {
+        display: block;
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--un-blue-deeper);
+        line-height: 1.1;
+      }
+      .highlight-label {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+
+      /* ─── Report banner ─── */
+      .report-banner {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--un-blue);
+        border-radius: 0.65rem;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      .report-banner-text { flex: 1 1 280px; }
+      .report-banner-text h2 { font-size: 1rem; margin: 0 0 0.2rem; color: var(--navy); }
+      .report-banner-text p { margin: 0; font-size: 0.87rem; color: var(--text-muted); }
+      .report-banner-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+      /* ─── Video notice ─── */
+      .video-notice {
+        background: #fef9c3;
+        border: 1px solid #fde047;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.88rem;
+        color: #713f12;
+        margin-bottom: 1.5rem;
+      }
+
+      .visually-hidden {
+        position: absolute; width: 1px; height: 1px;
+        padding: 0; margin: -1px; overflow: hidden;
+        clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="page-header" role="banner">
+      <div class="page-header-inner">
+        <h1>🗓️ UN Open Source Week 2025 — Sessions &amp; Resources</h1>
+        <p>Summaries, key quotes, and links to recordings and materials from UN Open Source Week 2025 (June 16–20, New York). Compiled from the official conference report.</p>
+        <span class="license-badge">📄 Report licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" style="color:#93c5fd;">CC BY 4.0<span class="visually-hidden"> (opens in new tab)</span></a> · Authors: Sachiko Muto (RISE / OpenForum Europe)</span>
+      </div>
+    </header>
+
+    <main id="main-content">
+
+      <!-- Stats summary -->
+      <div class="highlights-bar" aria-label="2025 event statistics">
+        <div class="highlight-stat">
+          <span class="highlight-value">1,000+</span>
+          <span class="highlight-label">Participants</span>
+        </div>
+        <div class="highlight-stat">
+          <span class="highlight-value">75</span>
+          <span class="highlight-label">Countries</span>
+        </div>
+        <div class="highlight-stat">
+          <span class="highlight-value">160+</span>
+          <span class="highlight-label">Speakers</span>
+        </div>
+        <div class="highlight-stat">
+          <span class="highlight-value">~100</span>
+          <span class="highlight-label">Sponsors &amp; Partners</span>
+        </div>
+        <div class="highlight-stat">
+          <span class="highlight-value">5</span>
+          <span class="highlight-label">Days of programming</span>
+        </div>
+        <div class="highlight-stat">
+          <span class="highlight-value">2M+</span>
+          <span class="highlight-label">Wikipedia views from Edit-A-Thon</span>
+        </div>
+      </div>
+
+      <!-- Report banner -->
+      <div class="report-banner" role="complementary" aria-label="Official report">
+        <div class="report-banner-text">
+          <h2>📄 Official Conference Report</h2>
+          <p>Full proceedings, session summaries, and keynote transcripts. Published by RISE Research Institutes of Sweden (ISBN 978-91-90109-31-1).</p>
+        </div>
+        <div class="report-banner-actions">
+          <a class="session-link link-report"
+             href="https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf"
+             target="_blank" rel="noopener noreferrer">
+            📥 Download PDF<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a class="session-link link-web"
+             href="https://www.un.org/digital-emerging-technologies/content/open-source-week"
+             target="_blank" rel="noopener noreferrer">
+            🌐 UN ODET Page<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Video notice -->
+      <div class="video-notice" role="note">
+        ⚠️ <strong>Note on video recordings:</strong> Session recordings from inside UN Headquarters
+        are published on <a href="https://media.un.org/" target="_blank" rel="noopener noreferrer">UN Web TV (media.un.org)<span class="visually-hidden"> (opens in new tab)</span></a>
+        and the <a href="https://www.youtube.com/@UNWebTV" target="_blank" rel="noopener noreferrer">UN Web TV YouTube channel<span class="visually-hidden"> (opens in new tab)</span></a>.
+        Community Day sessions (held at PwC) may be available on individual organization channels
+        (CHAOSS, InnerSource Commons, OpenForum Europe). Links will be added here as they are confirmed.
+      </div>
+
+      <!-- Day 1–2: UN Tech Over -->
+      <section class="section" aria-labelledby="day12-heading">
+        <h2 id="day12-heading" class="section-heading">
+          <span class="day-badge">Days 1–2 · June 16–17</span>
+          UN Tech Over — Hackathon, Edit-A-Thon, Maintain-A-Thon
+        </h2>
+        <div class="session-grid">
+
+          <article class="session-card">
+            <h3>🛠️ Hackathon — "Ahead of the Storm": Open Geospatial Analytics for Children-Centric Climate Emergency Response</h3>
+            <div class="session-meta">
+              <span>🤝 UNICEF · Apache Software Foundation · LPI · CNCF</span>
+              <span>👥 81 participants · 21 teams</span>
+            </div>
+            <p class="session-desc">
+              Participants built scalable open-source solutions to protect vulnerable children from extreme weather. Three challenge tracks: child-centric weather intelligence, harmonizing multi-hazard data, and enhancing UNICEF's open-source GeoSight platform.
+              Winners: <strong>Brytans, SEESALT, and T4SG</strong>. Solutions will be used by UNICEF in real-world climate emergency response.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://www.unicef.org/" target="_blank" rel="noopener noreferrer">🌐 UNICEF<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-web" href="https://www.cncf.io/" target="_blank" rel="noopener noreferrer">🌐 CNCF<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="session-card">
+            <h3>✏️ Edit-A-Thon — Knowledge as a Commons</h3>
+            <div class="session-meta">
+              <span>🤝 UN ODET · Wikimedia Foundation · Wikimedia NYC · Missions of Italy &amp; Sri Lanka</span>
+            </div>
+            <p class="session-desc">
+              Wikipedia editors and UN staff expanded coverage of digital public goods, AI regulation, and the Global Digital Compact.
+              Result: <strong>1,000+ edits · 16,500 words (≈60 printed pages) · 2 million+ article views</strong> within one month.
+              6 new articles created, 234 existing articles improved.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://wikimediafoundation.org/" target="_blank" rel="noopener noreferrer">🌐 Wikimedia Foundation<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="session-card">
+            <h3>🔧 Maintain-A-Thon — Sustaining What We Build</h3>
+            <div class="session-meta">
+              <span>🤝 Sovereign Tech Agency · Alpha-Omega</span>
+              <span>👥 40+ participants · 15+ breakout sessions</span>
+            </div>
+            <p class="session-desc">
+              An unconference focused on the often invisible work of software maintenance — supply chain security, long-term funding, community health, contributor onboarding, and sunsetting. Participants addressed structural challenges for maintainers who often work in isolation.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://www.sovereigntechfund.de/" target="_blank" rel="noopener noreferrer">🌐 Sovereign Tech Agency<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-web" href="https://alpha-omega.dev/" target="_blank" rel="noopener noreferrer">🌐 Alpha-Omega<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Day 2: LinkedIn Side Event + Breakouts -->
+      <section class="section" aria-labelledby="day2-breakouts-heading">
+        <h2 id="day2-breakouts-heading" class="section-heading">
+          <span class="day-badge">Day 2 · June 17</span>
+          LinkedIn Side Event &amp; Breakout Sessions
+        </h2>
+        <div class="session-grid">
+
+          <article class="session-card">
+            <h3>💼 AI and the Future of Work: The ICT Sector in Transition</h3>
+            <div class="session-meta">
+              <span>🤝 LinkedIn · UN ODET</span>
+              <span>👥 200+ in-person attendees</span>
+            </div>
+            <p class="session-desc">
+              Based on the joint UN-ODET/ILO report <em>Mind the AI Divide</em>, this session presented a framework for assessing AI's impact on the workforce, with early findings on the ICT sector. Speakers emphasized AI is reshaping jobs, not just displacing them, and called for policies balancing innovation with equity.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://www.ilo.org/publications/mind-ai-divide" target="_blank" rel="noopener noreferrer">📄 Mind the AI Divide Report<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="session-card">
+            <h3>🤖 Open Source Skills in the AI Era — European Open Source Academy</h3>
+            <div class="session-meta">
+              <span>Moderator: Nicholas Gates (OpenForum Europe)</span>
+            </div>
+            <p class="session-desc">
+              Panelists from Element/Matrix.org (Amandine Le Pape), Arduino/Malmö University (David Cuartielles), OpenForum Europe (Sachiko Muto), and ITU (Walid Mathlouthi) examined skills needed to sustain open source in an AI-driven economy. Open source described as a "great democratizer" for broadening AI benefit.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🧠 Advancing Open Source AI for the Public Good</h3>
+            <div class="session-meta">
+              <span>Stefano Maffulli (OSI) · Amreen Taneja (DPGA)</span>
+            </div>
+            <p class="session-desc">
+              Introduced OSI's Open Source AI Definition (OSAID) v1.0 and the DPGA's Digital Public Goods standard requirements for AI systems. Both stressed openness must extend beyond code to training data, documentation, governance, and safety practices.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://opensource.org/ai" target="_blank" rel="noopener noreferrer">🌐 Open Source AI Definition<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-web" href="https://digitalpublicgoods.net/" target="_blank" rel="noopener noreferrer">🌐 DPGA<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Day 3: OSPOs for Good -->
+      <section class="section" aria-labelledby="day3-heading">
+        <h2 id="day3-heading" class="section-heading">
+          <span class="day-badge">Day 3 · June 18</span>
+          OSPOs for Good (Trusteeship Council Chamber)
+        </h2>
+        <div class="session-grid">
+
+          <article class="session-card">
+            <h3>🏛️ Opening Keynote — Amandeep Singh Gill, UN Under-Secretary-General</h3>
+            <div class="session-meta">
+              <span>UN Office for Digital and Emerging Technologies (ODET)</span>
+            </div>
+            <p class="session-desc">
+              Called on the community to support the Global Digital Compact (GDC), which explicitly recognizes open source, open AI models, and access to training data. Announced the event has grown from "a small, intimate gathering of open source enthusiasts" in 2023 to over 1,000 participants. Highlighted the UN Open Source Principles (endorsed by 80 organizations) and the UN Open Source Catalogue.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://www.un.org/digital-emerging-technologies/global-digital-compact" target="_blank" rel="noopener noreferrer">🌐 Global Digital Compact<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-video" href="https://www.youtube.com/@UNWebTV" target="_blank" rel="noopener noreferrer">▶ UN Web TV<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="session-card">
+            <h3>🏢 How They Did It: A Look Behind Newly Launched OSPOs</h3>
+            <div class="session-meta">
+              <span>Moderator: Sachiko Muto (OpenForum Europe / RISE)</span>
+            </div>
+            <p class="session-desc">
+              Panelists from AWS (Nithya Ruff), Carnegie Mellon University (Sayeed Choudhury), French DINUM (Bastien Guerry), GitHub (Avni Khatri), and the Republic of South Africa (Richard Gevers) shared their OSPO journeys. Key message: OSPOs provide the anchor for openness, bridging resistant organizational systems with open practices.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🤖 AI and Open Source: Building Ethical and Transparent Systems</h3>
+            <div class="session-meta">
+              <span>Moderator: Hannah Aubry (Mastodon Board)</span>
+            </div>
+            <p class="session-desc">
+              Panelists from TII (Hakim Hacid), GitLab (Sabrina Farmer), PwC (Frederik Blachetta), and UNESCO (Guilherme Canela) explored ethical AI development. Video contributions from Yann LeCun (Meta) and Stephanie Hung (ADB).
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🔗 Breaking Silos: Open Source and Open Data Drive Interoperability</h3>
+            <div class="session-meta">
+              <span>Moderator: Mehdi Snene (UN ODET)</span>
+            </div>
+            <p class="session-desc">
+              Panelists from UNECE (Dmitry Mariyasin), Wikimedia Foundation (Rebecca MacKinnon), Japan Digital Agency (Masayuki Yamada), African Development Bank (Momar Kouta), and Mozilla Foundation (Nabiha Syed) discussed open standards as the "lingua franca" for interoperability.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🏗️ The Role of Open Source in Digital Public Infrastructure</h3>
+            <div class="session-meta">
+              <span>Moderator: Ruth Ikegah (OSPO Now / CHAOSS)</span>
+            </div>
+            <p class="session-desc">
+              Panelists from Linux Foundation Europe (Gabriele Columbro), Mercedes-Benz (Wolfgang Gehring), Sovereign Tech Agency (Adriana Groh), Bill &amp; Melinda Gates Foundation (Miller Abel), and Capgemini (Franck Greverie). Video contribution from Tshilidzi Marwala (UN University).
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🌍 Navigating Digital Cooperation Across Layers of Governance</h3>
+            <div class="session-meta">
+              <span>Moderator: Lucy Harris (DPGA COO) · Keynote: Roberto Di Cosmo (Software Heritage)</span>
+            </div>
+            <p class="session-desc">
+              Roberto Di Cosmo presented data from 180 million archived open source projects to underscore the need for shared digital infrastructure. Panelists from Colombia, Czech Republic (Prague City Council), Cloudera, and UN/CEFACT argued open source is an operational framework of standards, repositories, and governance — not just a philosophy.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://www.softwareheritage.org/" target="_blank" rel="noopener noreferrer">🌐 Software Heritage<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Day 4: DPI Day -->
+      <section class="section" aria-labelledby="day4-heading">
+        <h2 id="day4-heading" class="section-heading">
+          <span class="day-badge">Day 4 · June 19</span>
+          DPI Day — Inaugural Digital Public Infrastructure Day
+        </h2>
+        <div class="session-grid">
+
+          <article class="session-card">
+            <h3>🌐 Opening Keynotes</h3>
+            <div class="session-meta">
+              <span>Co-hosted by Dominican Republic &amp; Nigeria</span>
+              <span>Sigmund Freund · Amandeep Singh Gill · Vilas Dhar (Patrick J. McGovern Foundation)</span>
+            </div>
+            <p class="session-desc">
+              The inaugural DPI Day framed digital public infrastructure — identity, payments, data exchange — as a shared public good. Key examples cited: India (Aadhaar + Jan-Dhan raised bank account ownership from 35% to ~80%), Estonia (saves ~2% of GDP annually), Brazil's Pix (cost $4M to build, saved $5.7B in year one).
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🤝 Global Cooperation for DPI: Lessons from Cross-Border Projects</h3>
+            <div class="session-meta">
+              <span>Moderator: Moritz Fromageot (UN ODET)</span>
+              <span>Dr. 'Bosun Tijani (Nigeria) · Yolanda Martinez (World Bank) · Sheila Warren (Project Liberty) · Daniel Murenzi (East African Community)</span>
+            </div>
+            <p class="session-desc">
+              Mapped requirements for portable DPI across borders: open interfaces, procurement models favoring reuse, and public sector capacity building. Video keynote from Tomas Lamanauskas (ITU Deputy Secretary-General).
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🌍 Empowering DPI Implementation Across the African Continent</h3>
+            <div class="session-meta">
+              <span>Tobi Kasali (UN ODET) · Ozzeir Khan (World Bank) · Jane Munga (Carnegie Endowment) · Nora Hauptmann (GovStack) · Assane Gueye (CMU Africa)</span>
+            </div>
+            <p class="session-desc">
+              Highlighted continental DPI initiatives, regional standards alignment, and the role of open-source components for sustainability and security. Africa's regional alignment is enabling DPI deployment at scale.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://govstack.global/" target="_blank" rel="noopener noreferrer">🌐 GovStack<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+
+          <article class="session-card">
+            <h3>🔒 DPI Day Breakout Sessions (6 tracks)</h3>
+            <div class="session-meta">
+              <span>UN ODET · UNDP · World Bank · GovStack · Mastodon · Accion · Co-Develop · DPGA</span>
+            </div>
+            <p class="session-desc">
+              Six parallel sessions covered: DPI Safeguards &amp; Inclusion (UN ODET/UNDP), Data Protection in DPI (World Bank/UNU-EGOV), Digital Sovereignty (GovStack/Mastodon), Evidence for Safety in DPI (Accion), Open Source for Financial Inclusion (Co-Develop/DPGA 50-in-5), and DPI for Smaller States (UNDP/Dominican Republic).
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Day 5: Community Day -->
+      <section class="section" aria-labelledby="day5-heading">
+        <h2 id="day5-heading" class="section-heading">
+          <span class="day-badge">Day 5 · June 20</span>
+          Community Day — Hosted by PwC New York
+        </h2>
+        <p style="font-size:0.92rem;color:var(--text-muted);margin:0 0 1rem;">
+          20 sessions across 5 tracks organized by RISE, OpenForum Europe, CURIOSS, and CHAOSS. Interactive format — short talks, workshops, and clinics.
+        </p>
+        <div class="session-grid">
+
+          <article class="session-card">
+            <h3>🛡️ Digital Sovereignty &amp; Resiliency Track</h3>
+            <div class="session-meta">
+              <span>4 sessions · DINUM · Sovereign Tech Agency · Alpha-Omega · OpenSSF · OWASP</span>
+            </div>
+            <p class="session-desc">
+              Topics: Building Sovereign Digital Workspaces · Securing the Supply Chain through Global Collaboration · Invisible Work, Critical Code: The Role of Maintainers in Open Source Digital Infrastructure · Fostering Resiliency in the Digital Public Infrastructure.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🎯 Global Priorities &amp; SDGs Track</h3>
+            <div class="session-meta">
+              <span>4 sessions · IBM · AI Alliance · CHAOSS · UNDP</span>
+            </div>
+            <p class="session-desc">
+              Topics: Open Source in the UN System · Youth &amp; SDGs · Open Source and Open Data · Open Technologies in Healthcare.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🤖 Artificial Intelligence Track</h3>
+            <div class="session-meta">
+              <span>3 sessions · CURIOSS · Open Voice Initiative · LF AI &amp; Data</span>
+            </div>
+            <p class="session-desc">
+              Topics: Open Trusted AI · Advancing Inclusive and Sustainable Solutions with Open Source AI · Responsible AI — Navigating Tradeoffs between Innovation and Responsibility.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🏫 Capacity Building Track</h3>
+            <div class="session-meta">
+              <span>4 sessions · DINUM · Turing Way · NumFOCUS · Software Heritage · PwC Germany</span>
+            </div>
+            <p class="session-desc">
+              Topics: Impactful Open Source in Academia · Open Source Enablement in the Public Sector · National Responsibility for Fundamental Technologies with Open Source · Measuring the Impact of Open Source for DPI.
+            </p>
+          </article>
+
+          <article class="session-card">
+            <h3>🏗️ Digital Public Infrastructure Track</h3>
+            <div class="session-meta">
+              <span>4 sessions · FIWARE Foundation · Mojaloop · Barcelona City Council · DPGA · Access Partnership</span>
+            </div>
+            <p class="session-desc">
+              Topics: Open Standards, Open Source, Futures: Lessons from FIWARE · Digital Public Goods as Infrastructure · DPI in the Global South · DPI Governance: Navigating Law, Ethics, and Safeguards.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Where to find videos -->
+      <section class="section" aria-labelledby="videos-heading">
+        <h2 id="videos-heading" class="section-heading">
+          🎥 Where to Find Video Recordings
+        </h2>
+        <p style="font-size:0.92rem;color:var(--text-muted);margin:0 0 1rem;">
+          Plenary sessions from Days 3–4 (Trusteeship Council Chamber, UN HQ) are the most likely to be on UN Web TV.
+          Community Day (Day 5, PwC NYC) recordings — if published — would be on individual community organization channels.
+        </p>
+        <div class="session-grid">
+          <article class="session-card">
+            <h3>UN Web TV — Official Plenary Sessions</h3>
+            <p class="session-desc">
+              Sessions held at UN Headquarters (OSPOs for Good Day 3, DPI Day Day 4) are archived on UN Web TV. Search for "open source week 2025".
+            </p>
+            <div class="session-links">
+              <a class="session-link link-video" href="https://media.un.org/" target="_blank" rel="noopener noreferrer">▶ UN Web TV (media.un.org)<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-video" href="https://www.youtube.com/@UNWebTV" target="_blank" rel="noopener noreferrer">▶ UN Web TV YouTube<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-video" href="https://www.youtube.com/@UNDigitalTechnology" target="_blank" rel="noopener noreferrer">▶ UN Digital Technology YouTube<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+          <article class="session-card">
+            <h3>Community Organization Channels — Community Day (Day 5)</h3>
+            <p class="session-desc">
+              Community Day sessions were held at PwC NYC and organized by RISE, OpenForum Europe, CURIOSS, and CHAOSS. Recordings may be on individual organization channels:
+            </p>
+            <div class="session-links">
+              <a class="session-link link-video" href="https://www.youtube.com/@CHAOSSproject" target="_blank" rel="noopener noreferrer">▶ CHAOSS YouTube<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-video" href="https://www.youtube.com/@InnerSourceCommons" target="_blank" rel="noopener noreferrer">▶ InnerSource Commons<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-video" href="https://www.youtube.com/@OpenForumEurope" target="_blank" rel="noopener noreferrer">▶ OpenForum Europe<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-web" href="https://www.unopensource.org/" target="_blank" rel="noopener noreferrer">🌐 UN Open Source Week site<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Prior years context -->
+      <section class="section" aria-labelledby="history-heading">
+        <h2 id="history-heading" class="section-heading">
+          📅 Event History: 2023–2025
+        </h2>
+        <div class="session-grid">
+          <article class="session-card">
+            <h3>2023 — First Gathering</h3>
+            <p class="session-desc">
+              A small, intimate gathering of open source enthusiasts at UN HQ — the seed event that grew into UN Open Source Week. Mentioned in Amandeep Singh Gill's 2025 opening keynote as "a small, intimate gathering… it felt like a working session."
+            </p>
+          </article>
+          <article class="session-card">
+            <h3>2024 — OSPOs for Good 2024</h3>
+            <div class="session-meta">
+              <span>📅 July 9–10, 2024 · UN HQ, New York</span>
+              <span>🤝 Organized by OpenForum Europe &amp; OSPO++</span>
+            </div>
+            <p class="session-desc">
+              The second edition of the OSPOs for Good symposium — the direct predecessor to UN Open Source Week 2025. Brought together government, academic, and industry OSPO leaders. A separate conference report for this event may be available from OpenForum Europe or RISE.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-web" href="https://openforumeurope.org/publications/" target="_blank" rel="noopener noreferrer">📄 OpenForum Europe Publications<span class="visually-hidden"> (opens in new tab)</span></a>
+              <a class="session-link link-web" href="https://ospoplusplus.org/" target="_blank" rel="noopener noreferrer">🌐 OSPO++<span class="visually-hidden"> (opens in new tab)</span></a>
+            </div>
+          </article>
+          <article class="session-card">
+            <h3>2025 — UN Open Source Week (First Full Week)</h3>
+            <div class="session-meta">
+              <span>📅 June 16–20, 2025 · UN HQ + PwC NYC</span>
+              <span>🌍 1,000+ participants from 75 countries</span>
+            </div>
+            <p class="session-desc">
+              The first event to use the "UN Open Source Week" branding — a full five-day programme co-hosted with Germany, the Dominican Republic, and Nigeria. Covered hackathons, OSPOs, DPI, and community tracks. The official conference report is CC BY 4.0 licensed.
+            </p>
+            <div class="session-links">
+              <a class="session-link link-report"
+                 href="https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf"
+                 target="_blank" rel="noopener noreferrer">
+                📥 Download 2025 Report (PDF)<span class="visually-hidden"> (opens in new tab)</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Blog posts and coverage -->
+      <section class="section" aria-labelledby="coverage-heading">
+        <h2 id="coverage-heading" class="section-heading">
+          📰 Community Coverage &amp; Blog Posts
+        </h2>
+        <div class="session-grid">
+          <article class="session-card">
+            <h3>OpenSSF: Securing the Supply Chain through Global Collaboration</h3>
+            <div class="session-meta"><span>OpenSSF · June 27, 2025</span></div>
+            <p class="session-desc">Summary of the Community Day Supply Chain Security session, including insights from the OpenSSF team who participated in the Maintain-A-Thon and Community Day tracks.</p>
+            <div class="session-links">
+              <a class="session-link link-web"
+                 href="https://openssf.org/blog/2025/06/27/openssf-at-un-open-source-week-2025-securing-the-supply-chain-through-global-collaboration/"
+                 target="_blank" rel="noopener noreferrer">
+                🌐 Read on OpenSSF Blog<span class="visually-hidden"> (opens in new tab)</span>
+              </a>
+            </div>
+          </article>
+          <article class="session-card">
+            <h3>Seth Michael Larson: Security for the Long Haul</h3>
+            <div class="session-meta"><span>sethmlarson.dev · June 2025</span></div>
+            <p class="session-desc">A blog post about the Maintain-A-Thon security track — covering supply chain security, maintainer burnout, and long-term sustainability of open source infrastructure.</p>
+            <div class="session-links">
+              <a class="session-link link-web"
+                 href="https://sethmlarson.dev/un-open-source-week-2025-security-for-the-long-haul"
+                 target="_blank" rel="noopener noreferrer">
+                🌐 Read the post<span class="visually-hidden"> (opens in new tab)</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Content compiled from the <a href="https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf" target="_blank" rel="noopener noreferrer">UN Open Source Week 2025 Conference Report<span class="visually-hidden"> (opens in new tab)</span></a>, licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0<span class="visually-hidden"> (opens in new tab)</span></a>. Authors: Sachiko Muto (RISE / OpenForum Europe).</p>
+      <p style="margin-top:0.4rem;"><a href="index.html">← Back to OSW+ NYC</a> · <a href="https://github.com/mgifford/OSW_plus" target="_blank" rel="noopener noreferrer">View source on GitHub<span class="visually-hidden"> (opens in new tab)</span></a></p>
+    </footer>
+
+    <script src="nav.js" defer></script>
+  </body>
+</html>
