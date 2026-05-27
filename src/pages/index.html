@@ -216,7 +216,7 @@
         root.innerHTML = events.map((e) => cardMarkup(e, 3)).join("");
       }
 
-      // Relative URL works on GitHub Pages (/OSW_plus/) and local dev
+      // Relative URL resolves correctly when _site/ is served from root (GitHub Pages, local serve)
       fetch("api/2026/events.json")
         .then((response) => response.json())
         .then((events) => {
