@@ -140,18 +140,23 @@ def _infer_timeframe_from_times(start: str, end: str, event_date: str | None = N
     weekday dates the start time is used to distinguish breakfast slots from
     evening slots.
     """
-    if event_date in _RUNWAY_DATES:
-        return "runway"
-    if event_date in _AFTERMATH_DATES:
-        return "aftermath"
+    if event_date is not None:
+        if event_date in _RUNWAY_DATES:
+            return "runway"
+        if event_date in _AFTERMATH_DATES:
+            return "aftermath"
+        # Known weekday date — classify by time
+        try:
+            start_h, start_m = (int(x) for x in start.split(":"))
+        except ValueError:
+            return "weekday_evening"
+        return "weekday_breakfast" if start_h * 60 + start_m < 10 * 60 else "weekday_evening"
+    # No date context — fall back to time-only heuristic (legacy / generic pads)
     try:
         start_h, start_m = (int(x) for x in start.split(":"))
     except ValueError:
         return "weekday_evening"
-    start_minutes = start_h * 60 + start_m
-    if start_minutes < 10 * 60:   # before 10:00 → breakfast slot
-        return "weekday_breakfast"
-    return "weekday_evening"
+    return "weekday_breakfast" if start_h * 60 + start_m < 10 * 60 else "weekday_evening"
 
 
 def parse_dpga_events(
