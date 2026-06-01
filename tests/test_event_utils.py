@@ -3,7 +3,42 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.event_utils import build_event_from_submission, parse_issue_form_markdown
+from scripts.event_utils import build_event_from_submission, detect_access_level, parse_issue_form_markdown
+
+
+class DetectAccessLevelTests(unittest.TestCase):
+    def test_invite_only_hyphen(self):
+        self.assertEqual(detect_access_level("invite-only event"), "invite_only")
+
+    def test_invite_only_space(self):
+        self.assertEqual(detect_access_level("invite only event"), "invite_only")
+
+    def test_invitation_only(self):
+        self.assertEqual(detect_access_level("invitation only gathering"), "invite_only")
+
+    def test_by_invitation(self):
+        self.assertEqual(detect_access_level("by invitation"), "invite_only")
+
+    def test_invitees_only(self):
+        self.assertEqual(detect_access_level("invitees only"), "invite_only")
+
+    def test_registration_required(self):
+        self.assertEqual(detect_access_level("registration required to attend"), "registration_required")
+
+    def test_rsvp_required(self):
+        self.assertEqual(detect_access_level("RSVP required"), "registration_required")
+
+    def test_tickets_required(self):
+        self.assertEqual(detect_access_level("tickets required"), "registration_required")
+
+    def test_public_event(self):
+        self.assertEqual(detect_access_level("Open to all community members"), "public")
+
+    def test_empty_string(self):
+        self.assertEqual(detect_access_level(""), "public")
+
+    def test_case_insensitive(self):
+        self.assertEqual(detect_access_level("INVITE-ONLY"), "invite_only")
 
 
 class EventUtilsTests(unittest.TestCase):
@@ -24,6 +59,41 @@ class EventUtilsTests(unittest.TestCase):
         event = build_event_from_submission(fields, issue_number=5, existing_events=[])
         self.assertEqual(event["timeframe"], "weekday_breakfast")
         self.assertEqual(event["start_time"], "07:30")
+
+    def test_build_event_defaults_access_to_public(self):
+        fields = {
+            "event title": "Open Meetup",
+            "when is it happening?": "Weekday After-Hours (5:30 PM Onward)",
+            "exact date": "2026-06-23",
+            "original event link (rsvp page)": "https://example.org/open",
+            "brief event summary": "Anyone welcome",
+        }
+        event = build_event_from_submission(fields, issue_number=6, existing_events=[])
+        self.assertEqual(event["access"], "public")
+
+    def test_build_event_invite_only_access(self):
+        fields = {
+            "event title": "Invite Only Dinner",
+            "when is it happening?": "Weekday After-Hours (5:30 PM Onward)",
+            "exact date": "2026-06-23",
+            "original event link (rsvp page)": "https://example.org/dinner",
+            "brief event summary": "Private dinner",
+            "access level": "Invite Only",
+        }
+        event = build_event_from_submission(fields, issue_number=7, existing_events=[])
+        self.assertEqual(event["access"], "invite_only")
+
+    def test_build_event_registration_required_access(self):
+        fields = {
+            "event title": "Workshop",
+            "when is it happening?": "Weekday Daytime (9:00 AM - 5:30 PM)",
+            "exact date": "2026-06-24",
+            "original event link (rsvp page)": "https://example.org/workshop",
+            "brief event summary": "Technical workshop",
+            "access level": "Registration Required",
+        }
+        event = build_event_from_submission(fields, issue_number=8, existing_events=[])
+        self.assertEqual(event["access"], "registration_required")
 
     def _base_fields(self, timeframe: str, date: str) -> dict:
         return {

@@ -144,6 +144,66 @@ class EventsFromHtmlPatternsTests(unittest.TestCase):
         second = events_from_html_patterns(html, "https://example.org", first, "test")
         self.assertEqual(len(second), 0)
 
+    def test_html_invite_only_sets_access(self):
+        html = """<html><body>
+<div class="event">
+  <h3>LinkedIn Side Event</h3>
+  <p>Date: 2026-06-22</p>
+  <p>This invite-only event is hosted in collaboration with LinkedIn.</p>
+  <a href="https://example.org/linkedin">Details</a>
+</div>
+</body></html>"""
+        events = events_from_html_patterns(html, "https://example.org", [], "test")
+        self.assertTrue(events)
+        self.assertEqual(events[0]["access"], "invite_only")
+
+    def test_html_public_event_access(self):
+        html = """<html><body>
+<div class="event">
+  <h3>Open Hackathon</h3>
+  <p>Date: 2026-06-23</p>
+  <p>Open to all community members.</p>
+  <a href="https://example.org/hack">Join</a>
+</div>
+</body></html>"""
+        events = events_from_html_patterns(html, "https://example.org", [], "test")
+        self.assertTrue(events)
+        self.assertEqual(events[0]["access"], "public")
+
+
+class EventsFromJsonLdAccessTests(unittest.TestCase):
+    def _make_page(self, name: str, description: str) -> str:
+        return f"""<!doctype html><html><head>
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "{name}",
+  "startDate": "2026-06-22T18:00:00-04:00",
+  "url": "https://example.org/event",
+  "description": "{description}"
+}}
+</script>
+</head><body></body></html>"""
+
+    def test_jsonld_invite_only_description(self):
+        page = self._make_page("LinkedIn Side Event", "This invite-only event is at LinkedIn Office.")
+        events = events_from_jsonld(page, "https://example.org", [], "test")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["access"], "invite_only")
+
+    def test_jsonld_public_event(self):
+        page = self._make_page("Open Summit", "Join us for an open summit.")
+        events = events_from_jsonld(page, "https://example.org", [], "test")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["access"], "public")
+
+    def test_jsonld_invite_only_in_title(self):
+        page = self._make_page("Invitation-Only Workshop", "Details TBD.")
+        events = events_from_jsonld(page, "https://example.org", [], "test")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["access"], "invite_only")
+
 
 if __name__ == "__main__":
     unittest.main()

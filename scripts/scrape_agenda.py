@@ -31,7 +31,7 @@ from html.parser import HTMLParser
 from datetime import datetime
 from typing import Any
 
-from event_utils import TIME_RANGES, event_exists, load_events, next_event_id, save_events
+from event_utils import TIME_RANGES, detect_access_level, event_exists, load_events, next_event_id, save_events
 
 # ---------------------------------------------------------------------------
 # Date normalisation helpers
@@ -227,6 +227,7 @@ def _events_from_jsonld_item(
             "address": address_str,
         },
         "summary": (description[:500] if description else f"See {source_url} for full details."),
+        "access": detect_access_level(f"{title} {description}"),
         "original_source_url": str(event_url),
         "submission_source": source_name,
     }
@@ -273,8 +274,9 @@ def events_from_html_patterns(
     events: list[dict] = []
     # Split at any block-level element open tag
     blocks = re.split(r'<(?:div|li|article|section|tr|p|h[1-6])[^>]*>', html, flags=re.IGNORECASE)
-    for block in blocks:
-        text = _WHITESPACE.sub(" ", _STRIP_TAGS.sub(" ", block)).strip()
+    texts = [_WHITESPACE.sub(" ", _STRIP_TAGS.sub(" ", b)).strip() for b in blocks]
+
+    for idx, (block, text) in enumerate(zip(blocks, texts)):
         if len(text) < 15:
             continue
 
@@ -302,6 +304,13 @@ def events_from_html_patterns(
         if not title_candidate:
             title_candidate = f"Event on {date_str}"
 
+        # Check access level using the current block plus adjacent blocks for
+        # context — invite-only/registration notices are often in a sibling
+        # paragraph rather than the paragraph that contains the date itself.
+        _CONTEXT_WINDOW = 3
+        context_texts = texts[max(0, idx - _CONTEXT_WINDOW):idx + _CONTEXT_WINDOW + 1]
+        access_context = " ".join(t for t in context_texts if t)
+
         candidate: dict = {
             "id": next_event_id(existing + events, 2026),
             "title": title_candidate[:200],
@@ -317,6 +326,7 @@ def events_from_html_patterns(
                 "address": "New York, NY",
             },
             "summary": f"Imported from {source_url}. See the original page for full details.",
+            "access": detect_access_level(access_context),
             "original_source_url": event_url,
             "submission_source": source_name,
         }
