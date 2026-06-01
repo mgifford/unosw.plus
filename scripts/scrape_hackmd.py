@@ -45,7 +45,7 @@ import urllib.request
 from urllib.parse import urlparse
 from datetime import datetime
 
-from event_utils import TIME_RANGES, event_exists, load_events, next_event_id, save_events
+from event_utils import TIME_RANGES, detect_access_level, event_exists, load_events, next_event_id, save_events
 
 # ---------------------------------------------------------------------------
 # Strategy 1: simple line format  YYYY-MM-DD | Title | URL
@@ -301,6 +301,7 @@ def parse_dpga_events(
                     "address": "New York, NY",
                 },
                 "summary": f"Imported from the DPGA UN Open Source Week schedule. See {section_url} for details.",
+                "access": detect_access_level(" ".join(cells)),
                 "original_source_url": section_url,
                 "submission_source": source_name,
             }
@@ -370,6 +371,7 @@ def parse_dpga_events(
                             "address": "New York, NY",
                         },
                         "summary": f"Imported from the DPGA UN Open Source Week schedule. See {section_url} for details.",
+                        "access": detect_access_level(stripped),
                         "original_source_url": section_url,
                         "submission_source": source_name,
                     }
@@ -396,6 +398,7 @@ def parse_dpga_events(
                             "address": "New York, NY",
                         },
                         "summary": f"Time TBD. Imported from the DPGA UN Open Source Week schedule. See {section_url} for details.",
+                        "access": detect_access_level(stripped),
                         "original_source_url": section_url,
                         "submission_source": source_name,
                     }
@@ -441,6 +444,7 @@ def parse_dpga_events(
                         "address": "New York, NY",
                     },
                     "summary": f"Imported from the DPGA UN Open Source Week schedule. See {section_url} for details.",
+                    "access": detect_access_level(stripped),
                     "original_source_url": section_url,
                     "submission_source": source_name,
                 }
@@ -504,6 +508,7 @@ def parse_events(raw_text: str, existing_events: list[dict], source_name: str) -
                 "address": "New York, NY",
             },
             "summary": "Imported from community sync pad.",
+            "access": detect_access_level(line),
             "original_source_url": match.group("url").strip(),
             "submission_source": source_name,
         }

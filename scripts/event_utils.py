@@ -100,11 +100,39 @@ def _reconcile_timeframe(timeframe: str, date_str: str) -> str:
     return timeframe
 
 
+_INVITE_ONLY_PATTERN = re.compile(
+    r"\b(?:invite[- ]only|invitation[- ]only|by invitation|invitees? only)\b",
+    re.IGNORECASE,
+)
+_REGISTRATION_REQUIRED_PATTERN = re.compile(
+    r"\b(?:registration required|rsvp required|tickets? required)\b",
+    re.IGNORECASE,
+)
+
+
+def detect_access_level(text: str) -> str:
+    """Return ``'invite_only'``, ``'registration_required'``, or ``'public'``.
+
+    Scans *text* for common phrases that indicate restricted access.  The
+    detection is intentionally conservative: if no phrase is matched the event
+    is assumed to be public so that legitimate public events are never hidden.
+    """
+    if _INVITE_ONLY_PATTERN.search(text):
+        return "invite_only"
+    if _REGISTRATION_REQUIRED_PATTERN.search(text):
+        return "registration_required"
+    return "public"
+
+
 def build_event_from_submission(fields: dict[str, str], issue_number: int, existing_events: list[dict[str, Any]]) -> dict[str, Any]:
     date_value = datetime.strptime(fields["exact date"], "%Y-%m-%d").date()
     timeframe = normalize_timeframe(fields["when is it happening?"])
     timeframe = _reconcile_timeframe(timeframe, date_value.isoformat())
     start_time, end_time = TIME_RANGES[timeframe]
+
+    access = fields.get("access level", "public").strip().lower().replace(" ", "_")
+    if access not in {"public", "invite_only", "registration_required"}:
+        access = "public"
 
     return {
         "id": next_event_id(existing_events, date_value.year),
@@ -121,6 +149,7 @@ def build_event_from_submission(fields: dict[str, str], issue_number: int, exist
             "address": fields.get("address (optional)", "TBD"),
         },
         "summary": fields["brief event summary"],
+        "access": access,
         "original_source_url": fields["original event link (rsvp page)"],
         "submission_source": f"github_issue_{issue_number}",
     }

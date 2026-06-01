@@ -64,3 +64,14 @@ body:
     attributes:
       label: "Address (optional)"
       placeholder: "123 Lexington Ave, New York, NY"
+  - type: dropdown
+    id: access_level
+    attributes:
+      label: "Access Level"
+      description: "Is this event open to everyone, or restricted?"
+      options:
+        - "Public"
+        - "Registration Required"
+        - "Invite Only"
+    validations:
+      required: false
