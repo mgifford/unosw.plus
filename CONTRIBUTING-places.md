@@ -25,6 +25,8 @@ Please keep suggestions within **~20 minutes walk or one subway stop** of the UN
 
 Open a new issue using the **[Suggest a Place](https://github.com/mgifford/OSW_plus/issues/new?template=submit-place.yml)** template and fill in the form. A maintainer will add it to the map.
 
+After the issue is opened, GitHub Actions creates a pull request that adds the place to `data/places.csv` and regenerates `data/places_with_coords.csv` so the venue can appear on the map. A maintainer approves that pull request by reviewing it and merging it into `main`.
+
 ---
 
 ## Option B — Submit a Pull Request

@@ -18,6 +18,12 @@ OS Week Plus (OSW+) NYC is an open-source, community-driven fringe calendar and 
 - `scripts/generate_ics.py` — generates `public/calendar.ics`.
 - `scripts/geocode_places.py` — auto-fills coordinates in `places_with_coords.csv` via Nominatim.
 
+## Project policies
+
+- [AGENTS.md](AGENTS.md) — instructions for AI agents working in this repository.
+- [ACCESSIBILITY.md](ACCESSIBILITY.md) — accessibility target, guardrails, and test expectations.
+- [SUSTAINABILITY.md](SUSTAINABILITY.md) — sustainability commitments and review cadence.
+
 ## Places to Meet
 
 Inspired by [Food-W3C-Kobe](https://github.com/mgifford/Food-W3C-Kobe), OSW+ NYC also maintains a community-curated guide to spots near the UN where attendees can grab coffee, find affordable food, or meet up in the evening.

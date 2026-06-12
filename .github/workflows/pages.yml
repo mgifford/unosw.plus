@@ -40,6 +40,8 @@ jobs:
           cp -r public/. _site/
           mkdir -p _site/api
           cp -r api/. _site/api/
+          mkdir -p _site/data
+          cp data/places_with_coords.csv _site/data/
 
       - name: Run accessibility tests (axe + Playwright)
         run: npx playwright test

@@ -31,6 +31,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests
+
       - name: Resolve issue number
         id: resolve
         run: |
@@ -43,7 +48,7 @@ jobs:
       - name: Fetch issue body (workflow_dispatch only)
         if: github.event_name == 'workflow_dispatch'
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api repos/${{ github.repository }}/issues/${{ steps.resolve.outputs.issue_number }} \
             --jq '.body' > /tmp/issue_body.md
@@ -66,10 +71,14 @@ jobs:
             --issue-number "${{ steps.resolve.outputs.issue_number }}" \
             --places-file data/places.csv
 
+      - name: Rebuild place coordinates
+        run: |
+          python scripts/geocode_places.py
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ github.token }}
           commit-message: "chore: ingest place suggestion #${{ steps.resolve.outputs.issue_number }}"
           title: "chore: ingest place suggestion #${{ steps.resolve.outputs.issue_number }}"
           body: |

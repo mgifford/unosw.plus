@@ -48,7 +48,7 @@ def main() -> int:
     lines.append("END:VCALENDAR")
     output_path = Path(args.output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text("\r\n".join(lines) + "\r\n", encoding="utf-8")
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return 0
 
 
