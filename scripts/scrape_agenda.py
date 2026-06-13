@@ -3,8 +3,10 @@
 
 Strategies tried in order:
   1. JSON-LD ``schema.org/Event`` objects embedded in ``<script>`` tags.
-  2. Regex-based HTML-block scanning for any block that contains a 2026-06
-     date and a plausible event title.
+  2. Raw Webflow tab-panel parsing for the agenda's day tabs and nested
+      event cards.
+  3. Regex-based HTML-block scanning for any remaining blocks that contain a
+      2026-06 date and a plausible event title.
 
 Only events whose date falls in June 2026 are imported.  Every imported
 event carries ``original_source_url`` pointing back to the authoritative
@@ -22,6 +24,7 @@ Add ``--dry-run`` to print candidates without writing any files.
 from __future__ import annotations
 
 import argparse
+import html as _html
 import json
 import re
 import sys
@@ -70,6 +73,34 @@ _STRPTIME_FORMATS = (
 _SCRIPT_BLOCKS = re.compile(r"<(?:script|style|noscript)\b[^>]*>.*?</(?:script|style|noscript)>", re.IGNORECASE | re.DOTALL)
 _MD_LINK_TRAILING = re.compile(r"\s*\(\[[^\]]+\]\(https?://[^)]+\)\)\.?$")
 _BRACKETED_LINK = re.compile(r"\[([^\]]+)\]\(https?://[^)]+\)")
+_TOP_DAY_TAB = re.compile(
+    r'<a\b(?=[^>]*\bdata-w-tab=["\'](?P<tab>Tab \d+)["\'])[^>]*>(?P<body>.*?)</a>',
+    re.IGNORECASE | re.DOTALL,
+)
+_DAY_PANE_START = re.compile(
+    r'<div\b(?=[^>]*\bdata-w-tab=["\'](?P<tab>Tab \d+)["\'])(?=[^>]*\bclass=["\'][^"\']*w-tab-pane[^"\']*["\'])[^>]*>',
+    re.IGNORECASE,
+)
+_EVENT_CARD_START = re.compile(
+    r'<div\b(?=[^>]*\bclass=["\'][^"\']*eventcardlink-local-w[^"\']*["\'])[^>]*>',
+    re.IGNORECASE,
+)
+_TITLE_BLOCK = re.compile(
+    r'<h2\b[^>]*class=["\'][^"\']*title-local[^"\']*["\'][^>]*>(.*?)</h2>',
+    re.IGNORECASE | re.DOTALL,
+)
+_SCHEDULE_TEXT = re.compile(
+    r'<div\b[^>]*class=["\'][^"\']*event-schedule-text[^"\']*["\'][^>]*>(.*?)</div>',
+    re.IGNORECASE | re.DOTALL,
+)
+_LOCATION_TEXT = re.compile(
+    r'<div\b[^>]*class=["\'][^"\']*event-adr-text-b[^"\']*["\'][^>]*>(.*?)</div>',
+    re.IGNORECASE | re.DOTALL,
+)
+_DESCRIPTION_TEXT = re.compile(
+    r'<div\b[^>]*class=["\'][^"\']*member-designation[^"\']*["\'][^>]*>(.*?)</div>',
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def _clean_event_title(raw_title: str) -> str:
@@ -80,6 +111,154 @@ def _clean_event_title(raw_title: str) -> str:
     text = _BRACKETED_LINK.sub(r"\1", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip(" .-–—\t")
+
+
+def _text_from_html(raw_html: str) -> str:
+    text = _html.unescape(raw_html or "")
+    text = re.sub(r"<br\s*/?>", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip(" .-–—\t")
+
+
+def _date_from_day_label(label_html: str) -> str | None:
+    label = _text_from_html(label_html)
+    match = re.search(r"(?P<day>\d{1,2})\s+June", label, flags=re.IGNORECASE)
+    if not match:
+        return None
+    day = match.group("day").zfill(2)
+    return f"2026-06-{day}"
+
+
+def _consume_div_block(html: str, start: int) -> int:
+    depth = 0
+    for match in re.finditer(r"</?div\b[^>]*>", html[start:], flags=re.IGNORECASE):
+        token = match.group(0)
+        if token.startswith("</"):
+            depth -= 1
+            if depth == 0:
+                return start + match.end()
+        else:
+            depth += 1
+    return len(html)
+
+
+def _extract_day_panels(html: str) -> list[tuple[str, str]]:
+    tabs: list[tuple[str, str]] = []
+    for match in _TOP_DAY_TAB.finditer(html):
+        tab = match.group("tab")
+        date = _date_from_day_label(match.group("body"))
+        if date:
+            tabs.append((tab, date))
+
+    schedule_start = html.find('schedule-tabs-content w-tab-content')
+    if schedule_start == -1:
+        return []
+
+    panels: list[tuple[str, str]] = []
+    cursor = schedule_start
+    ordered_tabs = sorted(tabs, key=lambda item: int(item[0].split()[1]))
+    for _tab, date in ordered_tabs:
+        pane_match = _DAY_PANE_START.search(html, cursor)
+        if not pane_match:
+            break
+        start = pane_match.start()
+        end = _consume_div_block(html, start)
+        panels.append((date, html[start:end]))
+        cursor = end
+    return panels
+
+
+def _event_cards_from_panel(panel_html: str) -> list[str]:
+    cards: list[str] = []
+    cursor = 0
+    while True:
+        match = _EVENT_CARD_START.search(panel_html, cursor)
+        if not match:
+            break
+        start = match.start()
+        end = _consume_div_block(panel_html, start)
+        cards.append(panel_html[start:end])
+        cursor = end
+    return cards
+
+
+def _candidate_from_event_card(
+    card_html: str,
+    event_date: str,
+    source_url: str,
+    existing: list[dict],
+    source_name: str,
+) -> dict | None:
+    title_match = _TITLE_BLOCK.search(card_html)
+    title = _clean_event_title(_text_from_html(title_match.group(1))) if title_match else ""
+    if not title:
+        return None
+
+    schedule_texts = [_text_from_html(match.group(1)) for match in _SCHEDULE_TEXT.finditer(card_html)]
+    schedule_texts = [text for text in schedule_texts if text and text != "-"]
+    if len(schedule_texts) >= 2:
+        start_time, end_time = schedule_texts[0], schedule_texts[1]
+    elif len(schedule_texts) == 1:
+        start_time = schedule_texts[0]
+        end_time = TIME_RANGES["weekday_evening"][1]
+    else:
+        start_time, end_time = TIME_RANGES["weekday_evening"]
+
+    location_match = _LOCATION_TEXT.search(card_html)
+    location_name = _text_from_html(location_match.group(1)) if location_match else "TBD"
+
+    descriptions = [
+        _text_from_html(match.group(1))
+        for match in _DESCRIPTION_TEXT.finditer(card_html)
+    ]
+    descriptions = [text for text in descriptions if text and text != title]
+    summary = " ".join(dict.fromkeys(descriptions)).strip()
+    if not summary:
+        summary = f"Imported from {source_url}. See the original page for full details."
+
+    candidate: dict = {
+        "id": next_event_id(existing, 2026),
+        "title": title[:200],
+        "organizer": "UN Open Source Week",
+        "timeframe": "weekday_evening",
+        "event_date": event_date,
+        "start_time": start_time,
+        "end_time": end_time,
+        "timezone": "America/New_York",
+        "location": {
+            "name": location_name,
+            "neighborhood": "TBD",
+            "address": "New York, NY",
+        },
+        "summary": summary[:500],
+        "access": detect_access_level(_text_from_html(card_html)),
+        "original_source_url": source_url,
+        "submission_source": source_name,
+    }
+    return candidate if not event_exists(existing, candidate) else None
+
+
+def events_from_agenda_tabpanels(
+    html: str,
+    source_url: str,
+    existing: list[dict],
+    source_name: str,
+) -> list[dict]:
+    events: list[dict] = []
+    html = _SCRIPT_BLOCKS.sub(" ", html)
+    for event_date, panel_html in _extract_day_panels(html):
+        for card_html in _event_cards_from_panel(panel_html):
+            candidate = _candidate_from_event_card(
+                card_html,
+                event_date,
+                source_url,
+                existing + events,
+                source_name,
+            )
+            if candidate:
+                events.append(candidate)
+    return events
 
 
 def normalize_date(raw: str) -> str | None:
@@ -363,10 +542,15 @@ def parse_events_from_page(
     existing: list[dict],
     source_name: str,
 ) -> list[dict]:
-    """Try JSON-LD first, then fall back to HTML pattern matching."""
+    """Try JSON-LD first, then Webflow tab panels, then HTML pattern matching."""
     events = events_from_jsonld(html, source_url, existing, source_name)
     if events:
         print(f"[scrape_agenda] JSON-LD strategy: found {len(events)} new event(s) from {source_url}")
+        return events
+
+    events = events_from_agenda_tabpanels(html, source_url, existing, source_name)
+    if events:
+        print(f"[scrape_agenda] tabpanel strategy: found {len(events)} new event(s) from {source_url}")
         return events
 
     events = events_from_html_patterns(html, source_url, existing, source_name)
