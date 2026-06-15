@@ -113,6 +113,25 @@
     "submission_source": "hackmd-dpga:https://hackmd.io/@dpga/Sk05Nc21Me/download"
   },
   {
+    "id": "evt-2026-101",
+    "title": "Octane Side Event: Sustainable Open Source Funding Infrastructure (RSVP + Details). Location: Michael J Fox Foundation Offices, 111 W34th St",
+    "organizer": "Digital Public Goods Alliance",
+    "timeframe": "weekday_daytime",
+    "event_date": "2026-06-22",
+    "start_time": "12:00",
+    "end_time": "17:00",
+    "timezone": "America/New_York",
+    "location": {
+      "name": "TBD",
+      "neighborhood": "TBD",
+      "address": "New York, NY"
+    },
+    "summary": "Imported from the DPGA UN Open Source Week schedule. See https://hackmd.io/@dpga/Sk05Nc21Me#UN-Tech-Over-%E2%80%94-Monday%2C-22-June for details.",
+    "access": "public",
+    "original_source_url": "https://hackmd.io/@dpga/Sk05Nc21Me#UN-Tech-Over-%E2%80%94-Monday%2C-22-June",
+    "submission_source": "hackmd-dpga:https://hackmd.io/@dpga/Sk05Nc21Me/download"
+  },
+  {
     "id": "evt-2026-059",
     "title": "Check-In",
     "organizer": "UN Open Source Week",
@@ -1621,6 +1640,25 @@
     "access": "public",
     "original_source_url": "https://www.unopensource.org/agenda",
     "submission_source": "scrape:https://www.unopensource.org/agenda"
+  },
+  {
+    "id": "evt-2026-102",
+    "title": "DPG Showcase & Networking \u2013 Community Event (More details TBA) Growing Inclusive Digital Commons: Open Solutions, Communities, and AI in Practice",
+    "organizer": "Digital Public Goods Alliance",
+    "timeframe": "weekday_daytime",
+    "event_date": "2026-06-26",
+    "start_time": "14:20",
+    "end_time": "15:20",
+    "timezone": "America/New_York",
+    "location": {
+      "name": "TBD",
+      "neighborhood": "TBD",
+      "address": "New York, NY"
+    },
+    "summary": "Imported from the DPGA UN Open Source Week schedule. See https://hackmd.io/@dpga/Sk05Nc21Me#Community-Day-%E2%80%94-Friday%2C-26-June for details.",
+    "access": "public",
+    "original_source_url": "https://hackmd.io/@dpga/Sk05Nc21Me#Community-Day-%E2%80%94-Friday%2C-26-June",
+    "submission_source": "hackmd-dpga:https://hackmd.io/@dpga/Sk05Nc21Me/download"
   },
   {
     "id": "evt-2026-083",

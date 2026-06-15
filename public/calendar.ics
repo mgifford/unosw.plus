@@ -52,6 +52,14 @@ DESCRIPTION:Imported from the DPGA UN Open Source Week schedule. See https://hac
 LOCATION:New York, NY
 END:VEVENT
 BEGIN:VEVENT
+UID:evt-2026-101@osweekplus.nyc
+SUMMARY:Octane Side Event: Sustainable Open Source Funding Infrastructure (RSVP + Details). Location: Michael J Fox Foundation Offices, 111 W34th St
+DTSTART;TZID=America/New_York:20260622T120000
+DTEND;TZID=America/New_York:20260622T170000
+DESCRIPTION:Imported from the DPGA UN Open Source Week schedule. See https://hackmd.io/@dpga/Sk05Nc21Me#UN-Tech-Over-%E2%80%94-Monday%2C-22-June for details.\nRSVP: https://hackmd.io/@dpga/Sk05Nc21Me#UN-Tech-Over-%E2%80%94-Monday%2C-22-June
+LOCATION:New York, NY
+END:VEVENT
+BEGIN:VEVENT
 UID:evt-2026-059@osweekplus.nyc
 SUMMARY:Check-In
 DTSTART;TZID=America/New_York:20260622T160000
@@ -689,6 +697,14 @@ SUMMARY:Open Source for Climate, Energy, and Sustainability
 DTSTART;TZID=America/New_York:20260626T142000
 DTEND;TZID=America/New_York:20260626T152000
 DESCRIPTION:Imported from https://www.unopensource.org/agenda. See the original page for full details.\nRSVP: https://www.unopensource.org/agenda
+LOCATION:New York, NY
+END:VEVENT
+BEGIN:VEVENT
+UID:evt-2026-102@osweekplus.nyc
+SUMMARY:DPG Showcase & Networking – Community Event (More details TBA) Growing Inclusive Digital Commons: Open Solutions, Communities, and AI in Practice
+DTSTART;TZID=America/New_York:20260626T142000
+DTEND;TZID=America/New_York:20260626T152000
+DESCRIPTION:Imported from the DPGA UN Open Source Week schedule. See https://hackmd.io/@dpga/Sk05Nc21Me#Community-Day-%E2%80%94-Friday%2C-26-June for details.\nRSVP: https://hackmd.io/@dpga/Sk05Nc21Me#Community-Day-%E2%80%94-Friday%2C-26-June
 LOCATION:New York, NY
 END:VEVENT
 BEGIN:VEVENT
