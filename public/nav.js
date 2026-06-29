@@ -9,7 +9,7 @@
     { href: '/index.html',           label: '🏠 Home' },
     { href: '/events.html',          label: '📋 Events' },
     { href: '/calendar-view.html',   label: '📅 Calendar' },
-    { href: '/explore.html',         label: '🧭 Explore 2025' },
+    { href: '/explore.html',         label: '🧭 Knowledge' },
     { href: '/places-map.html',      label: '☕ Meet Up / Food / Coffee' },
     { href: '/search.html',          label: '🔍 Search' },
     { href: '/2025-resources.html',  label: '🗓️ 2025 Resources' }

@@ -2,9 +2,10 @@
 
 Runs ``scripts/generate_knowledge_site.py`` into a temporary directory (the
 real entry point, no copied legacy assets) and asserts the expected pages and
-datasets are produced, that internal cross-links between generated pages
-resolve, that embedded JSON-LD parses, and that the sitemap uses the canonical
-host. Idempotency is checked by running twice.
+datasets are produced under the ``<conference>/<year>/`` namespace, that the
+cross-year hub and sitemap are built, that internal cross-links resolve, that
+embedded JSON-LD parses, and that the sitemap uses the canonical host.
+Idempotency is checked by running twice.
 """
 
 import json
@@ -18,13 +19,12 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).parent.parent
 GENERATOR = REPO_ROOT / "scripts" / "generate_knowledge_site.py"
 BASE_HOST = "unosw.plus"
-# Directories of generated pages whose internal links must resolve.
-GENERATED_PREFIXES = ("sessions/", "speakers/", "organizations/", "projects/", "topics/")
+PREFIX = "unosw/2025"
 
 
-def run_generator(out_dir: Path) -> subprocess.CompletedProcess:
+def run_generator(out_dir: Path, year: int = 2025) -> subprocess.CompletedProcess:
     return subprocess.run(
-        [sys.executable, str(GENERATOR), "--conference", "unosw", "--year", "2025", "--out", str(out_dir)],
+        [sys.executable, str(GENERATOR), "--conference", "unosw", "--year", str(year), "--out", str(out_dir)],
         capture_output=True, text=True, check=True,
     )
 
@@ -42,23 +42,35 @@ class GenerateKnowledgeSiteTests(unittest.TestCase):
         cls._tmp.cleanup()
 
     def test_core_pages_exist(self):
-        for rel in ["explore.html", "sessions/index.html", "speakers/index.html",
-                    "organizations/index.html", "projects/index.html", "topics/index.html",
-                    "sessions/sess-opening-plenary.html", "speakers/sachiko-muto.html",
-                    "organizations/un-odet.html", "projects/drupal.html", "topics/ai.html"]:
+        for rel in [f"{PREFIX}/explore.html", f"{PREFIX}/sessions/index.html",
+                    f"{PREFIX}/speakers/index.html", f"{PREFIX}/organizations/index.html",
+                    f"{PREFIX}/projects/index.html", f"{PREFIX}/topics/index.html",
+                    f"{PREFIX}/sessions/sess-opening-plenary.html",
+                    f"{PREFIX}/speakers/sachiko-muto.html",
+                    f"{PREFIX}/organizations/un-odet.html",
+                    f"{PREFIX}/projects/drupal.html", f"{PREFIX}/topics/ai.html"]:
             self.assertTrue((self.out / rel).exists(), f"missing generated page {rel}")
 
+    def test_top_level_hub_lists_the_year(self):
+        hub = self.out / "explore.html"
+        self.assertTrue(hub.exists(), "missing top-level /explore.html hub")
+        self.assertIn(f"/{PREFIX}/explore.html", hub.read_text())
+
     def test_datasets_and_graph_written(self):
-        for rel in ["api/unosw/2025/sessions.json", "api/unosw/2025/speakers.json",
-                    "api/unosw/2025/index.json", "api/knowledge-graph.json", "sitemap.xml"]:
+        for rel in [f"{PREFIX}/api/sessions.json", f"{PREFIX}/api/speakers.json",
+                    f"{PREFIX}/api/index.json", f"{PREFIX}/api/knowledge-graph.json", "sitemap.xml"]:
             self.assertTrue((self.out / rel).exists(), f"missing generated artifact {rel}")
-        graph = json.loads((self.out / "api/knowledge-graph.json").read_text())
+        graph = json.loads((self.out / f"{PREFIX}/api/knowledge-graph.json").read_text())
         self.assertGreater(len(graph["nodes"]), 0)
         self.assertGreater(len(graph["edges"]), 0)
+        node_ids = {n["id"] for n in graph["nodes"]}
+        dangling = [e for e in graph["edges"] if e["source"] not in node_ids or e["target"] not in node_ids]
+        self.assertEqual(dangling, [], "knowledge graph has dangling edges")
 
     def test_sitemap_uses_canonical_host(self):
         sitemap = (self.out / "sitemap.xml").read_text()
         self.assertIn(BASE_HOST, sitemap)
+        self.assertIn(f"/{PREFIX}/", sitemap)
         self.assertNotIn("osweekplus.nyc", sitemap)
 
     def test_embedded_jsonld_parses(self):
@@ -68,17 +80,14 @@ class GenerateKnowledgeSiteTests(unittest.TestCase):
                 try:
                     json.loads(block)
                 except json.JSONDecodeError as exc:
-                    self.fail(f"invalid JSON-LD in {html_file.name}: {exc}")
+                    self.fail(f"invalid JSON-LD in {html_file}: {exc}")
 
     def test_internal_links_resolve(self):
         broken = []
         for html_file in self.out.rglob("*.html"):
-            html = html_file.read_text()
-            for href in re.findall(r'href="(/[^"#?]+\.html)"', html):
-                rel = href.lstrip("/")
-                if rel.startswith(GENERATED_PREFIXES) or rel == "explore.html":
-                    if not (self.out / rel).exists():
-                        broken.append(f"{html_file.name} -> {href}")
+            for href in re.findall(r'href="(/(?:unosw/\d+/[^"#?]+|explore)\.html)"', html_file.read_text()):
+                if not (self.out / href.lstrip("/")).exists():
+                    broken.append(f"{html_file} -> {href}")
         self.assertEqual(broken, [], "broken internal links:\n" + "\n".join(broken))
 
 

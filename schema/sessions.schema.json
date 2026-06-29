@@ -12,8 +12,12 @@
       "title": { "type": "string", "minLength": 1 },
       "year": { "type": "integer", "minimum": 2020, "maximum": 2100 },
       "date": { "type": "string" },
+      "start_time": { "type": "string" },
+      "end_time": { "type": "string" },
+      "timezone": { "type": "string" },
       "day": { "type": "string" },
       "track": { "type": "string" },
+      "kind": { "type": "string", "enum": ["official", "side-event"] },
       "type": {
         "type": "string",
         "enum": ["plenary", "keynote", "panel", "breakout", "hackathon", "edit-a-thon", "maintain-a-thon", "side-event", "ceremony", "workshop"]

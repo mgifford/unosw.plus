@@ -66,32 +66,41 @@ class SiteGenerator:
         self.site_name = conference["name"]
         self.generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         self.idx = ku.build_indexes(datasets)
+        # All generated pages/datasets for this conference-year live under this
+        # path prefix (e.g. "unosw/2025"), so multiple years/conferences coexist.
+        self.base_path = f"{conference['id']}/{year}"
+        self.prefix = f"/{self.base_path}"
+
+    def base_crumbs(self) -> list[tuple[str, str | None]]:
+        """Leading breadcrumb trail shared by every page in this conference-year."""
+        return [("Home", "/"), ("Knowledge", "/explore.html"),
+                (f"{self.site_name} {self.year}", f"{self.prefix}/explore.html")]
 
     # ── small link helpers ────────────────────────────────────────────────
     def speaker_link(self, slug: str) -> str:
         sp = self.idx["speakers_by_slug"].get(slug)
         name = sp["name"] if sp else slug
-        return f'<a href="/speakers/{esc(slug)}.html">{esc(name)}</a>'
+        return f'<a href="{self.prefix}/speakers/{esc(slug)}.html">{esc(name)}</a>'
 
     def org_link(self, slug: str) -> str:
         org = self.idx["orgs_by_slug"].get(slug)
         name = org["name"] if org else slug
-        return f'<a href="/organizations/{esc(slug)}.html">{esc(name)}</a>'
+        return f'<a href="{self.prefix}/organizations/{esc(slug)}.html">{esc(name)}</a>'
 
     def project_link(self, slug: str) -> str:
         pr = self.idx["projects_by_slug"].get(slug)
         name = pr["name"] if pr else slug
-        return f'<a href="/projects/{esc(slug)}.html">{esc(name)}</a>'
+        return f'<a href="{self.prefix}/projects/{esc(slug)}.html">{esc(name)}</a>'
 
     def topic_tag(self, slug: str) -> str:
         tp = self.idx["topics_by_slug"].get(slug)
         name = tp["name"] if tp else slug
-        return f'<a class="kp-tag" href="/topics/{esc(slug)}.html">{esc(name)}</a>'
+        return f'<a class="kp-tag" href="{self.prefix}/topics/{esc(slug)}.html">{esc(name)}</a>'
 
     def session_link(self, session_id: str) -> str:
         s = self.idx["sessions_by_id"].get(session_id)
         title = s["title"] if s else session_id
-        return f'<a href="/sessions/{esc(session_id)}.html">{esc(title)}</a>'
+        return f'<a href="{self.prefix}/sessions/{esc(session_id)}.html">{esc(title)}</a>'
 
     def reference_chip(self, ref_id: str) -> str:
         ref = self.idx["references_by_id"].get(ref_id)
@@ -131,7 +140,7 @@ class SiteGenerator:
     def page(self, rel_path: str, title: str, description: str, header_html: str,
              body_html: str, breadcrumbs: list[tuple[str, str | None]],
              jsonld: dict[str, Any] | None = None) -> str:
-        canonical = f"{self.base}/{rel_path}"
+        canonical = f"{self.base}{self.prefix}/{rel_path}"
         crumbs = "".join(
             (f'<li><a href="{esc(href)}">{esc(label)}</a></li>' if href
              else f'<li aria-current="page">{esc(label)}</li>')
@@ -139,8 +148,12 @@ class SiteGenerator:
         )
         jsonld_html = ""
         if jsonld is not None:
-            jsonld_html = ('<script type="application/ld+json">'
-                           + json.dumps(jsonld, ensure_ascii=False) + "</script>")
+            # Neutralize <, >, & so a field value can never break out of the
+            # <script> element (e.g. a "</script>" or "<!--" in scraped data).
+            # These are valid JSON string escapes, so the block still parses.
+            payload = (json.dumps(jsonld, ensure_ascii=False)
+                       .replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026"))
+            jsonld_html = f'<script type="application/ld+json">{payload}</script>'
         return f"""<!doctype html>
 <html lang="en">
   <head>
@@ -185,7 +198,7 @@ class SiteGenerator:
 """
 
     def write(self, rel_path: str, html: str) -> None:
-        target = self.out / rel_path
+        target = self.out / self.base_path / rel_path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding="utf-8")
 
@@ -271,8 +284,8 @@ class SiteGenerator:
                 for o in session["organizations"]
             ]
         description = (session.get("summary") or title)[:200]
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"),
-                       ("Sessions", "/sessions/index.html"), (title, None)]
+        breadcrumbs = self.base_crumbs() + [
+            ("Sessions", f"{self.prefix}/sessions/index.html"), (title, None)]
         self.write(f"sessions/{sid}.html",
                    self.page(f"sessions/{sid}.html", f"{title} · {self.site_name} {self.year}",
                              description, header, "\n".join(parts), breadcrumbs, jsonld))
@@ -344,8 +357,8 @@ class SiteGenerator:
         if speaker.get("country"):
             jsonld["nationality"] = speaker["country"]
         description = f"{name}{(' — ' + role) if role else ''}{(' at ' + org_display) if org_display else ''}. Sessions and quotes from {self.site_name} {self.year}."
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"),
-                       ("Speakers", "/speakers/index.html"), (name, None)]
+        breadcrumbs = self.base_crumbs() + [
+            ("Speakers", f"{self.prefix}/speakers/index.html"), (name, None)]
         self.write(f"speakers/{slug}.html",
                    self.page(f"speakers/{slug}.html", f"{name} · {self.site_name} {self.year}",
                              description[:200], header, "\n".join(parts), breadcrumbs, jsonld))
@@ -390,8 +403,8 @@ class SiteGenerator:
         if org.get("website"):
             jsonld["sameAs"] = org["website"]
         description = f"{name} — {type_label} at {self.site_name} {self.year}: sessions, people, and projects."
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"),
-                       ("Organizations", "/organizations/index.html"), (name, None)]
+        breadcrumbs = self.base_crumbs() + [
+            ("Organizations", f"{self.prefix}/organizations/index.html"), (name, None)]
         self.write(f"organizations/{slug}.html",
                    self.page(f"organizations/{slug}.html", f"{name} · {self.site_name} {self.year}",
                              description[:200], header, "\n".join(parts), breadcrumbs, jsonld))
@@ -421,8 +434,8 @@ class SiteGenerator:
         parts.append(self.provenance_block(project.get("provenance", {})))
 
         description = (project.get("description") or name)[:200]
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"),
-                       ("Projects", "/projects/index.html"), (name, None)]
+        breadcrumbs = self.base_crumbs() + [
+            ("Projects", f"{self.prefix}/projects/index.html"), (name, None)]
         self.write(f"projects/{slug}.html",
                    self.page(f"projects/{slug}.html", f"{name} · {self.site_name} {self.year}",
                              description, header, "\n".join(parts), breadcrumbs))
@@ -450,8 +463,8 @@ class SiteGenerator:
         }
         parts.append(self.provenance_block(note))
         description = f"{name}: {topic.get('description', '')}"[:200]
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"),
-                       ("Topics", "/topics/index.html"), (name, None)]
+        breadcrumbs = self.base_crumbs() + [
+            ("Topics", f"{self.prefix}/topics/index.html"), (name, None)]
         self.write(f"topics/{slug}.html",
                    self.page(f"topics/{slug}.html", f"{name} · {self.site_name} {self.year} topics",
                              description, header, "\n".join(parts), breadcrumbs))
@@ -461,7 +474,7 @@ class SiteGenerator:
                      body: str, crumb_label: str) -> None:
         header = (f'        <p class="kp-eyebrow">{esc(eyebrow)}</p>\n'
                   f'        <h1>{esc(title)}</h1>\n        <p>{esc(intro)}</p>')
-        breadcrumbs = [("Home", "/"), ("Explore 2025", "/explore.html"), (crumb_label, None)]
+        breadcrumbs = self.base_crumbs() + [(crumb_label, None)]
         self.write(rel, self.page(rel, f"{title} · {self.site_name} {self.year}",
                                   intro[:200], header, body, breadcrumbs))
 
@@ -488,9 +501,11 @@ class SiteGenerator:
             f'<p>{esc(s.get("role", ""))}{(" · " + esc(s["organization"])) if s.get("organization") else ""}'
             f'{(" · " + esc(s["country"])) if s.get("country") else ""}</p></li>'
             for s in speakers)
-        body = f'<section class="kp-section"><ul class="kp-grid">{cards}</ul></section>'
+        body = (f'<section class="kp-section"><h2>All speakers '
+                f'<span class="kp-meta">({len(speakers)})</span></h2>'
+                f'<ul class="kp-grid">{cards}</ul></section>')
         self.render_index("speakers/index.html", f"{self.site_name} {self.year}", "Speakers",
-                          f"{len(speakers)} speakers indexed from the official programme.", body, "Speakers")
+                          f"{len(speakers)} speakers indexed from the programme.", body, "Speakers")
 
     def render_organizations_index(self) -> None:
         by_type: dict[str, list] = {}
@@ -513,7 +528,9 @@ class SiteGenerator:
             f'<li class="kp-card"><h3>{self.project_link(p["slug"])}</h3>'
             f'<p>{esc((p.get("description", "") or "")[:130])}</p></li>'
             for p in sorted(self.datasets["projects"], key=lambda p: p["name"]))
-        body = f'<section class="kp-section"><ul class="kp-grid">{cards}</ul></section>'
+        body = (f'<section class="kp-section"><h2>All projects '
+                f'<span class="kp-meta">({len(self.datasets["projects"])})</span></h2>'
+                f'<ul class="kp-grid">{cards}</ul></section>')
         self.render_index("projects/index.html", f"{self.site_name} {self.year}", "Projects",
                           f"{len(self.datasets['projects'])} open source projects discussed during the week.",
                           body, "Projects")
@@ -524,7 +541,9 @@ class SiteGenerator:
             f'<p>{esc(t.get("description", ""))}</p>'
             f'<p class="kp-meta">{len(self.idx["sessions_by_topic"].get(t["slug"], []))} sessions</p></li>'
             for t in self.datasets["topics"])
-        body = f'<section class="kp-section"><ul class="kp-grid">{cards}</ul></section>'
+        body = (f'<section class="kp-section"><h2>All themes '
+                f'<span class="kp-meta">({len(self.datasets["topics"])})</span></h2>'
+                f'<ul class="kp-grid">{cards}</ul></section>')
         self.render_index("topics/index.html", f"{self.site_name} {self.year}", "Topics",
                           f"{len(self.datasets['topics'])} themes used to classify the programme.",
                           body, "Topics")
@@ -538,7 +557,7 @@ class SiteGenerator:
                              ("organizations", "Organizations"), ("projects", "Projects"),
                              ("topics", "Topics"), ("quotes", "Quotes")])
         browse = "".join(
-            f'<li class="kp-card"><h3><a href="{href}">{esc(label)}</a></h3><p>{esc(desc)}</p></li>'
+            f'<li class="kp-card"><h3><a href="{self.prefix}{href}">{esc(label)}</a></h3><p>{esc(desc)}</p></li>'
             for label, href, desc in [
                 ("Sessions", "/sessions/index.html", "Every indexed session, by day."),
                 ("Speakers", "/speakers/index.html", "Profiles for each speaker."),
@@ -546,13 +565,16 @@ class SiteGenerator:
                 ("Projects", "/projects/index.html", "Open source projects discussed."),
                 ("Topics", "/topics/index.html", "Themes across the programme."),
             ])
-        api_base = f"/api/{self.conf['id']}/{self.year}"
+        api_base = f"{self.prefix}/api"
         datasets_links = "".join(
             f'<li><a href="{api_base}/{n}.json"><code>{n}.json</code></a></li>' for n in ku.DATASETS)
+        # Provenance shown on the hub is taken from the data itself, so it is
+        # correct per year (the 2025 report vs the 2026 agenda).
+        sample_prov = next((s["provenance"] for s in self.datasets["sessions"] if s.get("provenance")), None)
         body = f"""<section class="kp-section">
   <p>An open, AI-ready index of public information about {esc(self.site_name)} {self.year}.
-     Everything here is derived from the official conference report and links back to the
-     authoritative source. Nothing is invented; every record carries provenance.</p>
+     Everything here is derived from public sources and links back to the authoritative
+     origin. Nothing is invented; every record carries provenance.</p>
   <ul class="kp-stats">{stats}</ul>
 </section>
 <section class="kp-section"><h2>Browse</h2><ul class="kp-grid">{browse}</ul></section>
@@ -560,75 +582,48 @@ class SiteGenerator:
   <h2>AI-ready datasets</h2>
   <p>Structured JSON for direct consumption by tools and language models:</p>
   <ul>{datasets_links}
-    <li><a href="/api/knowledge-graph.json"><code>knowledge-graph.json</code></a> — nodes &amp; edges</li>
+    <li><a href="{api_base}/knowledge-graph.json"><code>knowledge-graph.json</code></a> — nodes &amp; edges</li>
   </ul>
 </section>
-{self.provenance_block({
-    "source_url": "https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf",
-    "source_title": "UN Open Source Week 2025 Conference Report (RISE 2026:04)",
-    "license": "CC-BY-4.0",
-    "attribution": "Sachiko Muto, RISE / OpenForum Europe",
-    "method": "manual-extraction",
-    "retrieved": "2026-06-29",
-})}"""
+{self.provenance_block(sample_prov) if sample_prov else ""}"""
         header = (f'        <p class="kp-eyebrow">Knowledge Platform</p>\n'
                   f'        <h1>Explore {esc(self.site_name)} {self.year}</h1>\n'
                   f'        <p>Sessions, speakers, organizations, projects, and themes — '
                   f'cross-linked and traceable to public sources.</p>')
-        breadcrumbs = [("Home", "/"), ("Explore 2025", None)]
+        breadcrumbs = [("Home", "/"), ("Knowledge", "/explore.html"),
+                       (f"{self.site_name} {self.year}", None)]
         intro = f"Open knowledge platform for {self.site_name} {self.year}."
         self.write("explore.html",
                    self.page("explore.html", f"Explore {self.site_name} {self.year}",
                              intro, header, body, breadcrumbs))
 
-    # ── datasets + graph + sitemap ────────────────────────────────────────
+    # ── datasets + graph (per conference-year, under the path prefix) ─────
     def write_datasets(self) -> None:
-        api_dir = self.out / "api" / self.conf["id"] / str(self.year)
+        api_dir = self.out / self.base_path / "api"
         api_dir.mkdir(parents=True, exist_ok=True)
         for name in ku.DATASETS:
             (api_dir / f"{name}.json").write_text(
                 json.dumps(self.datasets[name], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        sample_prov = next((s["provenance"] for s in self.datasets["sessions"] if s.get("provenance")), {})
         manifest = {
             "conference": self.conf["id"],
             "name": self.site_name,
             "year": self.year,
             "generated_at": self.generated_at,
-            "license": "CC-BY-4.0",
-            "source": "https://www.un.org/digital-emerging-technologies/sites/www.un.org.techenvoy/files/UN_Open_Source_Week_Conference_Report_2025.pdf",
+            "base_path": self.base_path,
+            "explore_url": f"{self.prefix}/explore.html",
+            "license": sample_prov.get("license", ""),
+            "source": sample_prov.get("source_url", ""),
             "datasets": {name: len(self.datasets[name]) for name in ku.DATASETS},
-            "knowledge_graph": "/api/knowledge-graph.json",
+            "knowledge_graph": f"{self.prefix}/api/knowledge-graph.json",
         }
         (api_dir / "index.json").write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-        graph = ku.build_graph(self.conf["id"], self.year, self.datasets, self.base, self.generated_at)
-        (self.out / "api").mkdir(parents=True, exist_ok=True)
-        (self.out / "api" / "knowledge-graph.json").write_text(
+        graph = ku.build_graph(self.conf["id"], self.year, self.datasets,
+                               f"{self.base}{self.prefix}", self.generated_at)
+        (api_dir / "knowledge-graph.json").write_text(
             json.dumps(graph, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    def write_sitemap(self) -> None:
-        """Regenerate sitemap.xml covering every page in the output directory.
-
-        Scanning the output (rather than a hardcoded list) auto-includes both the
-        legacy site pages and the generated knowledge pages under the canonical host.
-        """
-        urls: list[str] = []
-        for path in sorted(self.out.rglob("*.html")):
-            rel = path.relative_to(self.out).as_posix()
-            if rel == "index.html":
-                urls.append(f"{self.base}/")
-            else:
-                urls.append(f"{self.base}/{rel}")
-        for extra in ["calendar.ics", "api/2026/events.json",
-                      f"api/{self.conf['id']}/{self.year}/index.json",
-                      "api/knowledge-graph.json"]:
-            if (self.out / extra).exists():
-                urls.append(f"{self.base}/{extra}")
-        body = "\n".join(f"  <url><loc>{esc(u)}</loc></url>" for u in dict.fromkeys(urls))
-        sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-                   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                   f"{body}\n</urlset>\n")
-        (self.out / "sitemap.xml").write_text(sitemap, encoding="utf-8")
 
     def generate(self) -> dict[str, int]:
         self.render_hub()
@@ -648,7 +643,6 @@ class SiteGenerator:
         for t in self.datasets["topics"]:
             self.render_topic(t)
         self.write_datasets()
-        self.write_sitemap()
         return {
             "sessions": len(self.datasets["sessions"]),
             "speakers": len(self.datasets["speakers"]),
@@ -656,6 +650,85 @@ class SiteGenerator:
             "projects": len(self.datasets["projects"]),
             "topics": len(self.datasets["topics"]),
         }
+
+
+def rebuild_top_level(out_dir: Path, base_url: str) -> list[dict[str, Any]]:
+    """(Re)build the cross-year hub (/explore.html) and the merged sitemap.
+
+    Scans the output for every conference-year manifest (``<conf>/<year>/api/
+    index.json``) and every ``*.html`` file, so running the generator for
+    multiple years accumulates instead of clobbering. Idempotent.
+    """
+    out = Path(out_dir)
+    base = base_url.rstrip("/")
+    manifests = []
+    for index_file in sorted(out.glob("*/*/api/index.json")):
+        try:
+            manifests.append(json.loads(index_file.read_text()))
+        except (json.JSONDecodeError, OSError):
+            continue
+
+    _write_top_hub(out, manifests)
+    _write_sitemap(out, base)
+    return manifests
+
+
+def _write_top_hub(out: Path, manifests: list[dict[str, Any]]) -> None:
+    cards = ""
+    for m in sorted(manifests, key=lambda m: (m.get("conference", ""), -int(m.get("year", 0)))):
+        d = m.get("datasets", {})
+        meta = " · ".join(f"{d.get(k, 0)} {k}" for k in ("sessions", "speakers", "organizations") if d.get(k))
+        cards += (f'<li class="kp-card"><h3><a href="{esc(m["explore_url"])}">'
+                  f'{esc(m["name"])} {esc(m["year"])}</a></h3>'
+                  f'<p class="kp-meta">{esc(meta)}</p></li>')
+    if not cards:
+        cards = '<li class="kp-card"><p>No conference years generated yet.</p></li>'
+    html = f"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowledge Platform · Explore by year</title>
+    <meta name="description" content="Open, AI-ready knowledge platform indexing UN Open Source Week by year, with provenance and links back to authoritative sources." />
+    <link rel="stylesheet" href="/shared.css" />
+    <link rel="stylesheet" href="/knowledge.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="kp-header">
+      <div class="kp-header-inner">
+        <p class="kp-eyebrow">Knowledge Platform</p>
+        <h1>Explore UN Open Source Week</h1>
+        <p>An open, AI-ready index of public information about UN Open Source Week,
+           linking back to authoritative sources. Choose a year.</p>
+      </div>
+    </header>
+    <main id="main-content" class="kp-main">
+      <section class="kp-section"><h2>Conference years</h2>
+        <ul class="kp-grid">{cards}</ul>
+      </section>
+    </main>
+    <footer class="kp-footer"><p>Generated knowledge platform · provenance on every record.</p></footer>
+    <script src="/nav.js" defer></script>
+  </body>
+</html>
+"""
+    (out / "explore.html").write_text(html, encoding="utf-8")
+
+
+def _write_sitemap(out: Path, base: str) -> None:
+    urls: list[str] = []
+    for path in sorted(out.rglob("*.html")):
+        rel = path.relative_to(out).as_posix()
+        urls.append(f"{base}/" if rel == "index.html" else f"{base}/{rel}")
+    for extra in ["calendar.ics", "api/2026/events.json"]:
+        if (out / extra).exists():
+            urls.append(f"{base}/{extra}")
+    body = "\n".join(f"  <url><loc>{esc(u)}</loc></url>" for u in dict.fromkeys(urls))
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+               f"{body}\n</urlset>\n")
+    (out / "sitemap.xml").write_text(sitemap, encoding="utf-8")
 
 
 def main() -> None:
@@ -674,12 +747,16 @@ def main() -> None:
 
     generator = SiteGenerator(conference, args.year, datasets, out_dir)
     counts = generator.generate()
+    # Rebuild the cross-year hub + merged sitemap (covers every year present).
+    manifests = rebuild_top_level(out_dir, conference["site_base_url"])
     total_pages = (counts["sessions"] + counts["speakers"] + counts["organizations"]
                    + counts["projects"] + counts["topics"] + 6)
-    print(f"Generated {total_pages} pages into {out_dir} for {conference['name']} {args.year}:")
+    print(f"Generated {total_pages} pages under {out_dir}/{generator.base_path} "
+          f"for {conference['name']} {args.year}:")
     for key, value in counts.items():
         print(f"  {value:>3} {key}")
-    print(f"  datasets + knowledge-graph + sitemap written under {out_dir}/api and {out_dir}/sitemap.xml")
+    print(f"  datasets + knowledge-graph under {out_dir}/{generator.base_path}/api")
+    print(f"  top-level hub + sitemap rebuilt ({len(manifests)} conference-year(s) present)")
 
 
 if __name__ == "__main__":

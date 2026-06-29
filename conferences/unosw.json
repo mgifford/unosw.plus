@@ -12,7 +12,7 @@
     "https://oict.un.org/"
   ],
   "years": [2025, 2026],
-  "data_years": [2025],
+  "data_years": [2025, 2026],
   "topic_vocabulary": [
     { "slug": "accessibility", "name": "Accessibility" },
     { "slug": "ai", "name": "AI" },
