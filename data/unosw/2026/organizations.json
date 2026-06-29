@@ -1,0 +1,93 @@
+[
+  {
+    "slug": "chaoss-community",
+    "name": "CHAOSS Community",
+    "type": "community",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: CHAOSS Community"
+    }
+  },
+  {
+    "slug": "dpga",
+    "name": "DPGA",
+    "type": "multilateral",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: DPGA"
+    }
+  },
+  {
+    "slug": "digital-public-goods-alliance",
+    "name": "Digital Public Goods Alliance",
+    "type": "multilateral",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: Digital Public Goods Alliance"
+    }
+  },
+  {
+    "slug": "evolving-web-civicactions-and-amazee-io",
+    "name": "Evolving Web, CivicActions, and Amazee.io",
+    "type": "other",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: Evolving Web, CivicActions, and Amazee.io"
+    }
+  },
+  {
+    "slug": "github",
+    "name": "GitHub",
+    "type": "company",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: GitHub"
+    }
+  },
+  {
+    "slug": "un-open-source-week",
+    "name": "UN Open Source Week",
+    "type": "un-agency",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: UN Open Source Week"
+    }
+  },
+  {
+    "slug": "united-nations-office-for-digital-and-emerging-technologies-odet-united-nations-office-of-information-and-communications-technology-oict",
+    "name": "United Nations Office for Digital and Emerging Technologies (ODET), United Nations Office of Information and Communications Technology (OICT)",
+    "type": "un-agency",
+    "provenance": {
+      "source_url": "https://www.unopensource.org/",
+      "source_title": "UN Open Source Week 2026 agenda",
+      "license": "public-domain",
+      "method": "automated-ingestion",
+      "retrieved": "2026-06-29",
+      "locator": "organizer: United Nations Office for Digital and Emerging Technologies (ODET), United Nations Office of Information and Communications Technology (OICT)"
+    }
+  }
+]
