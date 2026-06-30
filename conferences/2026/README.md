@@ -4,11 +4,7 @@
 
 Open Source for AI and Emerging Technologies (Part 1)
 
-https://webtv.un.org/en/asset/k14/k14ej1ucqu
-
-Transcript
-
-https://transcripts.un.org/en/asset/k14/k14ej1ucqu
+[Video](https://webtv.un.org/en/asset/k14/k14ej1ucqu), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k14/k14ej1ucqu) & Draft Transcript
 
 Topics:
 
@@ -20,11 +16,7 @@ Topics:
 
 ## Open Source for AI and Emerging Technologies (Part 2)
 
-https://webtv.un.org/en/asset/k1b/k1b443e64t
-
-Transcript
-
-https://transcripts.un.org/en/asset/k1b/k1b443e64t
+[Video](https://webtv.un.org/en/asset/k1b/k1b443e64t), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k1b/k1b443e64t) & Draft Transcript
 
 Topics:
 
@@ -36,11 +28,9 @@ Topics:
 
 DPI Day (Part 1)
 
-https://webtv.un.org/en/asset/k1c/k1cqj3jcdx
+[Video](https://webtv.un.org/en/asset/k1c/k1cqj3jcdx), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k1c/k1cqj3jcdx) & Draft Transcript
 
-Transcript (processing)
 
-https://transcripts.un.org/en/asset/k1c/k1cqj3jcdx
 
 Theme:
 
@@ -52,11 +42,8 @@ Theme:
 
 ## DPI Day (Part 2)
 
-https://webtv.un.org/en/asset/k13/k136ks9z9x
+[Video](https://webtv.un.org/en/asset/k13/k136ks9z9x), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k13/k136ks9z9x) & Draft Transcript
 
-Transcript (processing)
-
-https://transcripts.un.org/en/asset/k13/k136ks9z9x
 
 Theme:
 
@@ -69,11 +56,8 @@ Theme:
 
 OSPOs for Good (Part 1)
 
-https://webtv.un.org/en/asset/k12/k12620x8tm
+[Video](https://webtv.un.org/en/asset/k12/k12620x8tm), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k12/k12620x8tm) & Draft Transcript
 
-Transcript (processing)
-
-https://transcripts.un.org/en/asset/k12/k12620x8tm
 
 Theme:
 
@@ -85,11 +69,8 @@ Theme:
 
 ## OSPOs for Good (Part 2)
 
-https://webtv.un.org/en/asset/k1i/k1i4m11zkv
+[Video](https://webtv.un.org/en/asset/k1i/k1i4m11zkv), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k1i/k1i4m11zkv) & Draft Transcript
 
-Transcript (processing)
-
-https://transcripts.un.org/en/asset/k1i/k1i4m11zkv
 
 Theme:
 
