@@ -4,7 +4,7 @@
 
 Open Source for AI and Emerging Technologies (Part 1)
 
-[Video](https://webtv.un.org/en/asset/k14/k14ej1ucqu), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k14/k14ej1ucqu) & [Draft Transcript](https://github.com/mgifford/unosw.plus/blob/main/conferences/2026/k14-k14ej1ucqu-English.transcript.md)
+[Video](https://webtv.un.org/en/asset/k14/k14ej1ucqu) & [UN Transcript (empty)](https://transcripts.un.org/en/asset/k14/k14ej1ucqu) 
 
 
 Topics:
