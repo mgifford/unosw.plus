@@ -55,7 +55,7 @@ Theme:
 
 OSPOs for Good (Part 1)
 
-[Video](https://webtv.un.org/en/asset/k12/k12620x8tm), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k12/k12620x8tm) & [Draft Transcript](https://github.com/mgifford/unosw.plus/blob/main/conferences/2026/k12-k12620x8tm-English.transcript.md)
+[Video](https://webtv.un.org/en/asset/k12/k12620x8tm) & [UN Transcript (empty)](https://transcripts.un.org/en/asset/k12/k12620x8tm) 
 
 
 Theme:
@@ -68,8 +68,7 @@ Theme:
 
 ## OSPOs for Good (Part 2)
 
-[Video](https://webtv.un.org/en/asset/k1i/k1i4m11zkv), [UN Transcript (empty)](https://transcripts.un.org/en/asset/k1i/k1i4m11zkv) & [Draft Transcript](https://github.com/mgifford/unosw.plus/blob/main/conferences/2026/k1i-k1i4m11zkv-English.transcript.md)
-
+[Video](https://webtv.un.org/en/asset/k1i/k1i4m11zkv) & [UN Transcript (empty)](https://transcripts.un.org/en/asset/k1i/k1i4m11zkv)
 
 Theme:
 
