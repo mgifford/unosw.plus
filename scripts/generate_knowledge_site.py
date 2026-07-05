@@ -679,6 +679,8 @@ class SiteGenerator:
             "source": sample_prov.get("source_url", ""),
             "datasets": {name: len(self.datasets[name]) for name in ku.DATASETS},
             "knowledge_graph": f"{self.prefix}/api/knowledge-graph.json",
+            "annual_report": f"/reports/{self.conf['id']}/{self.year}.html",
+            "event_state": self.conf.get("event_state", {}),
         }
         (api_dir / "index.json").write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -749,26 +751,50 @@ def _write_platform_manifest(out: Path, base: str, manifests: list[dict[str, Any
     conference-year and its datasets without crawling any HTML.
     """
     entries = []
+    conf_states: dict[str, dict] = {}
     for m in sorted(manifests, key=lambda m: (m.get("conference", ""), -int(m.get("year", 0)))):
         api_base = f"/{m['base_path']}/api"
+        cid = m.get("conference")
+        if cid and cid not in conf_states and m.get("event_state"):
+            conf_states[cid] = m["event_state"]
         entries.append({
-            "conference": m.get("conference"),
+            "conference": cid,
             "name": m.get("name"),
             "year": m.get("year"),
             "explore_url": m.get("explore_url"),
             "api_base": api_base,
             "datasets": {n: f"{api_base}/{n}.json" for n in ku.DATASETS},
             "knowledge_graph": f"{api_base}/knowledge-graph.json",
+            "annual_report": m.get("annual_report", f"/reports/{cid}/{m.get('year')}.html"),
             "counts": m.get("datasets", {}),
             "license": m.get("license", ""),
             "source": m.get("source", ""),
+        })
+    conferences = []
+    for cid in sorted({e["conference"] for e in entries if e["conference"]}):
+        conferences.append({
+            "conference": cid,
+            "name": next((e["name"] for e in entries if e["conference"] == cid), cid),
+            "event_state": conf_states.get(cid, {}),
+            "years": sorted((e["year"] for e in entries if e["conference"] == cid), reverse=True),
+            "reports": f"/api/reports.json",
         })
     manifest = {
         "name": "UN Open Source Week Knowledge Platform",
         "description": "Open, AI-ready index of public information about UN Open Source Week, "
                        "with provenance and links back to authoritative sources.",
         "base_url": base,
-        "search_index": "/api/search-index.json",
+        # Every machine-readable surface an AI system needs — no HTML crawling required.
+        "discovery": {
+            "search_index": "/api/search-index.json",
+            "knowledge_graph": "/api/graph.json",
+            "reports": "/api/reports.json",
+            "timeline": "/timeline.html",
+            "relationship_map": "/graph.html",
+            "llms_txt": "/llms.txt",
+        },
+        "search_index": "/api/search-index.json",   # kept for back-compat
+        "conferences": conferences,
         "conference_years": entries,
     }
     (out / "api").mkdir(parents=True, exist_ok=True)
@@ -785,7 +811,13 @@ def _write_llms_txt(out: Path, base: str, manifests: list[dict[str, Any]]) -> No
         "carries provenance and links back to an authoritative source; no copyrighted media is hosted.",
         "",
         f"Machine-readable discovery entrypoint: {base}/api/index.json",
-        f"Combined search index (all years): {base}/api/search-index.json",
+        "",
+        "## Platform resources (all years)",
+        f"- [Combined search index]({base}/api/search-index.json) — sessions, speakers, "
+        "organizations, projects, themes, plus recordings/transcripts/documents.",
+        f"- [Merged knowledge graph]({base}/api/graph.json) — nodes and edges across years.",
+        f"- [Reports index]({base}/api/reports.json) — annual, cross-year theme, and directory briefings.",
+        f"- [Cross-year timeline]({base}/timeline.html) · [Relationship map]({base}/graph.html)",
         "",
         "## Conference years",
     ]
@@ -798,6 +830,8 @@ def _write_llms_txt(out: Path, base: str, manifests: list[dict[str, Any]]) -> No
         for n in ku.DATASETS:
             lines.append(f"  - [{n}]({api_base}/{n}.json)")
         lines.append(f"  - [knowledge-graph]({api_base}/knowledge-graph.json)")
+        if m.get("annual_report"):
+            lines.append(f"  - [annual briefing]({base}{m['annual_report']})")
     (out / "llms.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -1494,12 +1528,15 @@ def _write_reports(out: Path, base: str, manifests: list[dict[str, Any]]) -> Non
     if not confs:
         return
     (out / "reports").mkdir(parents=True, exist_ok=True)
+    reports_manifest: dict[str, Any] = {"index": "/reports/index.html", "conferences": []}
 
     index_body = []
     for cid, info in sorted(confs.items()):
         name = info["name"]
         years = sorted(info["years"], reverse=True)
         yd = {y: _load_year_datasets(out, info["years"][y]) for y in years}
+        conf_reports: dict[str, Any] = {"conference": cid, "name": name, "annual": [], "themes": [],
+                                        "directories": {}}
 
         annual_cards = ""
         for y in years:
@@ -1507,6 +1544,7 @@ def _write_reports(out: Path, base: str, manifests: list[dict[str, Any]]) -> Non
             annual_cards += (f'<li class="kp-card"><h3><a href="/reports/{cid}/{y}.html">'
                              f'{esc(name)} {y}</a></h3>'
                              f'<p class="kp-meta">{len(yd[y]["sessions"])} sessions · briefing</p></li>')
+            conf_reports["annual"].append({"year": y, "url": f"/reports/{cid}/{y}.html"})
 
         topic_name: dict[str, str] = {}
         theme_years: dict[str, set] = {}
@@ -1522,10 +1560,20 @@ def _write_reports(out: Path, base: str, manifests: list[dict[str, Any]]) -> Non
             ys = ", ".join(str(y) for y in sorted(theme_years[slug]))
             theme_cards += (f'<li class="kp-card"><h3><a href="/reports/{cid}/themes/{esc(slug)}.html">'
                             f'{esc(topic_name.get(slug, slug))}</a></h3><p class="kp-meta">{ys}</p></li>')
+            conf_reports["themes"].append({"slug": slug, "name": topic_name.get(slug, slug),
+                                           "years": sorted(theme_years[slug]),
+                                           "url": f"/reports/{cid}/themes/{slug}.html"})
 
         _write_directories(out, base, cid, name, years, yd)
         has_people = any(yd[y]["speakers"] for y in years)
         has_refs = any(yd[y]["projects"] or yd[y]["references"] for y in years)
+        conf_reports["directories"]["organizations"] = f"/reports/{cid}/organizations.html"
+        if has_people:
+            conf_reports["directories"]["people"] = f"/reports/{cid}/people.html"
+        if has_refs:
+            conf_reports["directories"]["repositories_and_standards"] = \
+                f"/reports/{cid}/repositories-and-standards.html"
+        reports_manifest["conferences"].append(conf_reports)
         dir_cards = (f'<li class="kp-card"><h3><a href="/reports/{cid}/organizations.html">'
                      f'Organizations</a></h3><p class="kp-meta">every organization, by year</p></li>')
         if has_people:
@@ -1552,6 +1600,9 @@ def _write_reports(out: Path, base: str, manifests: list[dict[str, Any]]) -> Non
         "briefings — each linking back to the underlying provenanced records.",
         [("Home", "/"), ("Knowledge", "/explore.html"), ("Reports", None)], "\n".join(index_body))
     (out / "reports" / "index.html").write_text(html, encoding="utf-8")
+    (out / "api").mkdir(parents=True, exist_ok=True)
+    (out / "api" / "reports.json").write_text(
+        json.dumps(reports_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _write_directories(out: Path, base: str, cid: str, name: str,

@@ -76,9 +76,24 @@ class GenerateKnowledgeSiteTests(unittest.TestCase):
         for entry in manifest["conference_years"]:
             self.assertIn("sessions", entry["datasets"])
             self.assertTrue(entry["knowledge_graph"].endswith("knowledge-graph.json"))
+        # Phase 16: a single discovery block pointing at every machine-readable surface.
+        disc = manifest["discovery"]
+        for key in ("search_index", "knowledge_graph", "reports", "timeline", "llms_txt"):
+            self.assertIn(key, disc)
+        # event_state (archive vs upcoming) is surfaced per conference.
+        self.assertTrue(manifest["conferences"])
+        self.assertIn("event_state", manifest["conferences"][0])
+        # reports manifest enumerates annual + theme + directory reports.
+        reports = json.loads((self.out / "api" / "reports.json").read_text())
+        conf = reports["conferences"][0]
+        self.assertTrue(conf["annual"] and conf["themes"])
+        self.assertIn("organizations", conf["directories"])
         llms = self.out / "llms.txt"
         self.assertTrue(llms.exists(), "missing /llms.txt")
-        self.assertIn("/api/index.json", llms.read_text())
+        llms_text = llms.read_text()
+        self.assertIn("/api/index.json", llms_text)
+        self.assertIn("/api/graph.json", llms_text)
+        self.assertIn("/api/reports.json", llms_text)
 
     def test_timeline_page(self):
         timeline = self.out / "timeline.html"
