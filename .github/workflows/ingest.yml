@@ -1,0 +1,67 @@
+name: Ingest social & preservation
+
+# Runs the social-post and Wayback-preservation ingesters where outbound network
+# access is available (GitHub-hosted runners have internet; the agent/CI sandbox
+# does not). Results are proposed as a pull request for review.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Which ingester(s) to run
+        type: choice
+        options: [both, social, wayback]
+        default: both
+      limit:
+        description: Max items per run (Wayback submissions / social page size)
+        default: "40"
+  schedule:
+    - cron: "17 6 * * 1"   # every Monday 06:17 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ingest public social posts (Bluesky + Mastodon)
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.target == 'both' || github.event.inputs.target == 'social' }}
+        run: python scripts/import_social.py --conference unosw --max-pages 3
+
+      - name: Preserve authoritative links (Wayback Machine)
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.target == 'both' || github.event.inputs.target == 'wayback' }}
+        run: python scripts/import_wayback.py --conference unosw --limit ${{ github.event.inputs.limit || '40' }} --freshness-days 90
+
+      - name: Open a pull request with any new data
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ingest/social-and-preservation
+          base: main
+          title: "Ingest: social posts & Wayback preservation"
+          commit-message: "Update social and preservation datasets from scheduled ingest"
+          body: |
+            Automated ingestion run (social posts + Wayback preservation).
+
+            - `data/unosw/social.json` — public posts matching the configured
+              `#unosw` hashtag variants (metadata + permalink + short excerpt only).
+            - `data/unosw/preservation.json` — Wayback snapshot status for the
+              platform's authoritative external links.
+
+            Please review before merging; social posts are third-party content and
+            are not treated as authoritative facts.
+          add-paths: |
+            data/unosw/social.json
+            data/unosw/preservation.json
+          delete-branch: true

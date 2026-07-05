@@ -83,6 +83,15 @@ full copyrighted text. When in doubt, store a reference and a link, not a copy.
   and always sit beside a link to the authoritative UN Web TV recording. They are
   aids to discovery, not an authoritative record; the official transcript
   (transcripts.un.org), once published, takes precedence. No video is stored.
+- **Social posts** (`data/<id>/social.json`, ingested by `import_social.py`) are
+  third-party content. Only **public** posts are collected, and each record stores
+  **metadata and a link** — author, date, platform, matched hashtags, permalink,
+  and a short excerpt — never full post content under a licence claim. They are
+  indexed as a distinct "social" category and are **not** treated as authoritative
+  facts. No private content is collected.
+- **Preservation records** (`data/<id>/preservation.json`, from `import_wayback.py`)
+  store only the original URL and its Wayback snapshot URL/status. No page content
+  or media is copied; the archive is the Internet Archive's, linked by reference.
 - **Code** (scripts, schemas, generator) is covered by the repository
   [LICENSE](LICENSE).
 - Contributors license their contributions under those same terms and confirm

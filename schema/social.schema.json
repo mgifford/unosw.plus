@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Social posts (third-party; metadata + link + excerpt only)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "platform", "url", "author", "posted", "retrieved", "method"],
+    "additionalProperties": true,
+    "properties": {
+      "id": { "type": "string" },
+      "platform": { "enum": ["bluesky", "mastodon"] },
+      "url": { "type": "string", "format": "uri" },
+      "author": { "type": "string" },
+      "author_name": { "type": "string" },
+      "author_url": { "type": "string" },
+      "posted": { "type": "string" },
+      "excerpt": { "type": "string" },
+      "hashtags": { "type": "array", "items": { "type": "string" } },
+      "retrieved": { "type": "string" },
+      "method": { "const": "automated-ingestion" }
+    }
+  }
+}

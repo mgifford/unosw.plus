@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Wayback preservation records (snapshot status for external links)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["url", "status", "retrieved", "method"],
+    "additionalProperties": true,
+    "properties": {
+      "url": { "type": "string", "format": "uri" },
+      "archived_url": { "type": "string" },
+      "archived_at": { "type": "string" },
+      "status": { "enum": ["archived", "submitted", "failed"] },
+      "retrieved": { "type": "string" },
+      "method": { "const": "automated-ingestion" }
+    }
+  }
+}
