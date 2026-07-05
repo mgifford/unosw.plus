@@ -102,5 +102,23 @@
     "upcoming_year": null,
     "upcoming_dates": null,
     "archive_mode": true
+  },
+  "social": {
+    "hashtags": [
+      "unosw",
+      "UNOpenSourceWeek",
+      "OpenSourceWeek",
+      "unosw2025",
+      "unosw2026",
+      "OSPOsForGood"
+    ],
+    "phrases": [
+      "UN Open Source Week"
+    ],
+    "mastodon_instances": [
+      "mastodon.social",
+      "fosstodon.org",
+      "social.lfx.dev"
+    ]
   }
 }

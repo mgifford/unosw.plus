@@ -739,6 +739,15 @@ def rebuild_top_level(out_dir: Path, base_url: str, repo_root: Path | None = Non
     _write_reports(out, base, manifests)
     _write_top_hub(out, manifests)
     _write_sitemap(out, base)
+    # Publish ingested social/preservation datasets (if an ingest run produced
+    # them) so they are fetchable and can be advertised in the discovery manifest.
+    if repo_root is not None:
+        for cid in {m.get("conference") for m in manifests if m.get("conference")}:
+            for name in ("social", "preservation"):
+                src = Path(repo_root) / "data" / cid / f"{name}.json"
+                if src.exists():
+                    (out / "api").mkdir(parents=True, exist_ok=True)
+                    (out / "api" / f"{name}.json").write_text(src.read_text(), encoding="utf-8")
     _write_platform_manifest(out, base, manifests)
     _write_llms_txt(out, base, manifests)
     return manifests
@@ -779,20 +788,25 @@ def _write_platform_manifest(out: Path, base: str, manifests: list[dict[str, Any
             "years": sorted((e["year"] for e in entries if e["conference"] == cid), reverse=True),
             "reports": f"/api/reports.json",
         })
+    discovery = {
+        "search_index": "/api/search-index.json",
+        "knowledge_graph": "/api/graph.json",
+        "reports": "/api/reports.json",
+        "timeline": "/timeline.html",
+        "relationship_map": "/graph.html",
+        "llms_txt": "/llms.txt",
+    }
+    if (out / "api" / "social.json").exists():
+        discovery["social"] = "/api/social.json"
+    if (out / "api" / "preservation.json").exists():
+        discovery["preservation"] = "/api/preservation.json"
     manifest = {
         "name": "UN Open Source Week Knowledge Platform",
         "description": "Open, AI-ready index of public information about UN Open Source Week, "
                        "with provenance and links back to authoritative sources.",
         "base_url": base,
         # Every machine-readable surface an AI system needs — no HTML crawling required.
-        "discovery": {
-            "search_index": "/api/search-index.json",
-            "knowledge_graph": "/api/graph.json",
-            "reports": "/api/reports.json",
-            "timeline": "/timeline.html",
-            "relationship_map": "/graph.html",
-            "llms_txt": "/llms.txt",
-        },
+        "discovery": discovery,
         "search_index": "/api/search-index.json",   # kept for back-compat
         "conferences": conferences,
         "conference_years": entries,
@@ -932,6 +946,22 @@ def _write_search_index(out: Path, manifests: list[dict[str, Any]], repo_root: P
                     url = ("https://github.com/mgifford/unosw.plus/blob/main/conferences/"
                            f"{year_dir.name}/{quote(f.name)}")
                     push("history", type_, _humanize_doc(f.stem), url, doc_year, label)
+
+    # Social — public posts ingested by import_social.py (third-party; a distinct
+    # category, never authoritative). Present only after an ingest run.
+    if repo_root is not None:
+        for cid in sorted({m.get("conference") for m in manifests if m.get("conference")}):
+            try:
+                posts = json.loads((Path(repo_root) / "data" / cid / "social.json").read_text())
+            except (OSError, json.JSONDecodeError):
+                posts = []
+            for post in posts:
+                posted = str(post.get("posted", ""))
+                year = int(posted[:4]) if posted[:4].isdigit() else None
+                who = post.get("author_name") or post.get("author") or "post"
+                push("social", "post", f"{who} — {post.get('platform', '')}", post.get("url", ""),
+                     year, post.get("platform", ""), post.get("excerpt", ""),
+                     " ".join(post.get("hashtags", [])))
 
     cat_order = {"events": 0, "history": 1}
     records.sort(key=lambda r: (cat_order.get(r["category"], 9), r["type"],
@@ -1353,6 +1383,7 @@ def _write_search_page(out: Path, base: str) -> None:
               <option value="">All categories</option>
               <option value="events">Events</option>
               <option value="history">History</option>
+              <option value="social">Social</option>
             </select>
             <label for="kp-year" class="visually-hidden">Filter by year</label>
             <select id="kp-year" name="year" style="__SEL__">
@@ -1370,7 +1401,7 @@ def _write_search_page(out: Path, base: str) -> None:
       (function () {
         var LABELS = {session:"Session", speaker:"Speaker", organization:"Organization",
                       project:"Project", topic:"Theme", recording:"Recording",
-                      document:"Document", page:"Page"};
+                      document:"Document", page:"Page", post:"Social post"};
         var input = document.getElementById("kp-q");
         var catSel = document.getElementById("kp-category");
         var yearSel = document.getElementById("kp-year");
