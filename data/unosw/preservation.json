@@ -1,0 +1,706 @@
+[
+  {
+    "url": "https://alpha-omega.dev/",
+    "archived_url": "http://web.archive.org/web/20260704114532/https://alpha-omega.dev/",
+    "archived_at": "20260704114532",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://chaoss.community/",
+    "archived_url": "http://web.archive.org/web/20260702212739/https://chaoss.community/",
+    "archived_at": "20260702212739",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://decidim.org/",
+    "archived_url": "http://web.archive.org/web/20260702095059/https://decidim.org/",
+    "archived_at": "20260702095059",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://digitalpublicgoods.net/",
+    "archived_url": "http://web.archive.org/web/20260702212957/https://www.digitalpublicgoods.net/",
+    "archived_at": "20260702212957",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://digitalpublicgoods.net/standard/",
+    "archived_url": "http://web.archive.org/web/20260702191918/https://www.digitalpublicgoods.net/standard",
+    "archived_at": "20260702191918",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://element.io/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbRzyYkZ_d_cBMhq6xn2Bdf3tURVVYM1I3VkxXNzdMNk42M0pPRTVZODBYQy4u#",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://foundation.mozilla.org/",
+    "archived_url": "http://web.archive.org/web/20180717064541/https://foundation.mozilla.org/",
+    "archived_at": "20180717064541",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://govstack.global/",
+    "archived_url": "http://web.archive.org/web/20260629112303/https://govstack.global/",
+    "archived_at": "20260629112303",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#Community-Day-%E2%80%94-Friday%2C-26-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#Community-Led-Side-Events-%E2%80%94-Friday%2C-26-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#DPI-Day-%E2%80%94-Wednesday%2C-24-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#OSPO-Day-%E2%80%94-Thursday%2C-25-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#OSPOs-for-Good-%E2%80%94-Thursday%2C-25-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#Open-Source-x-AI-%E2%80%94-Tuesday%2C-23-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://hackmd.io/@dpga/Sk05Nc21Me#UN-Tech-Over-%E2%80%94-Monday%2C-22-June",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://innersourcecommons.org/",
+    "archived_url": "http://web.archive.org/web/20260630204112/https://innersourcecommons.org/",
+    "archived_at": "20260630204112",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://joinmastodon.org/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://matrix.org/",
+    "archived_url": "http://web.archive.org/web/20260704115355/https://matrix.org/",
+    "archived_at": "20260704115355",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://mojaloop.io/",
+    "archived_url": "http://web.archive.org/web/20260610000621/https://mojaloop.io/",
+    "archived_at": "20260610000621",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://oict.un.org/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://openforumeurope.org/",
+    "archived_url": "http://web.archive.org/web/20260702191016/https://openforumeurope.org/",
+    "archived_at": "20260702191016",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://opensource.org/",
+    "archived_url": "http://web.archive.org/web/20260703061548/https://opensource.org/",
+    "archived_at": "20260703061548",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://opensource.org/ai",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://register.evolvedigital.com/events/evolvedigitalsummits/2260883",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://sdgs.un.org/goals",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k10/k10wm2b8nu",
+    "archived_url": "http://web.archive.org/web/20260625155248/https://webtv.un.org/en/asset/k10/k10wm2b8nu",
+    "archived_at": "20260625155248",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k12/k12620x8tm",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k13/k136ks9z9x",
+    "archived_url": "http://web.archive.org/web/20260702191019/https://webtv.un.org/en/asset/k13/k136ks9z9x",
+    "archived_at": "20260702191019",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k14/k14ej1ucqu",
+    "archived_url": "http://web.archive.org/web/20260702191019/https://webtv.un.org/en/asset/k14/k14ej1ucqu",
+    "archived_at": "20260702191019",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k15/k1517v486n",
+    "archived_url": "http://web.archive.org/web/20260218222324/https://webtv.un.org/en/asset/k15/k1517v486n",
+    "archived_at": "20260218222324",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1b/k1b443e64t",
+    "archived_url": "http://web.archive.org/web/20260702191019/https://webtv.un.org/en/asset/k1b/k1b443e64t",
+    "archived_at": "20260702191019",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1c/k1cqj3jcdx",
+    "archived_url": "http://web.archive.org/web/20260702191019/https://webtv.un.org/en/asset/k1c/k1cqj3jcdx",
+    "archived_at": "20260702191019",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1i/k1i4m11zkv",
+    "archived_url": "http://web.archive.org/web/20260628181825/https://webtv.un.org/en/asset/k1i/k1i4m11zkv",
+    "archived_at": "20260628181825",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1i/k1i8jasxz4",
+    "archived_url": "http://web.archive.org/web/20260115105550/https://webtv.un.org/en/asset/k1i/k1i8jasxz4",
+    "archived_at": "20260115105550",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1q/k1qmxhno3c",
+    "archived_url": "http://web.archive.org/web/20260508114158/https://webtv.un.org/en/asset/k1q/k1qmxhno3c",
+    "archived_at": "20260508114158",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1s/k1sdg8oy7y",
+    "archived_url": "http://web.archive.org/web/20260210003644/https://webtv.un.org/en/asset/k1s/k1sdg8oy7y",
+    "archived_at": "20260210003644",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://webtv.un.org/en/asset/k1v/k1vq934jz6",
+    "archived_url": "http://web.archive.org/web/20260211193906/https://webtv.un.org/en/asset/k1v/k1vq934jz6",
+    "archived_at": "20260211193906",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://wikimediafoundation.org/",
+    "archived_url": "http://web.archive.org/web/20260705192249/https://wikimediafoundation.org/",
+    "archived_at": "20260705192249",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.apache.org/",
+    "archived_url": "http://web.archive.org/web/20260704035951/https://apache.org/",
+    "archived_at": "20260704035951",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.arduino.cc/",
+    "archived_url": "http://web.archive.org/web/20260704040015/https://www.arduino.cc/",
+    "archived_at": "20260704040015",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.cncf.io/",
+    "archived_url": "http://web.archive.org/web/20260703234220/https://www.cncf.io/",
+    "archived_at": "20260703234220",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.drupal.org/",
+    "archived_url": "http://web.archive.org/web/20260630011051/https://www.drupal.org/",
+    "archived_at": "20260630011051",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.drupal.org/association",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.fiware.org/",
+    "archived_url": "http://web.archive.org/web/20260630091435/https://www.fiware.org/",
+    "archived_at": "20260630091435",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.ilo.org/",
+    "archived_url": "http://web.archive.org/web/20260701232747/https://www.ilo.org/",
+    "archived_at": "20260701232747",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.ilo.org/publications/mind-ai-divide",
+    "archived_url": "http://web.archive.org/web/20250122104055/https://www.ilo.org/publications/mind-ai-divide",
+    "archived_at": "20250122104055",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.itu.int/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.linkedin.com/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.lpi.org/",
+    "archived_url": "http://web.archive.org/web/20260703223945/https://www.lpi.org/",
+    "archived_at": "20260703223945",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.projectliberty.io/",
+    "archived_url": "http://web.archive.org/web/20260521011141/https://www.projectliberty.io/",
+    "archived_at": "20260521011141",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.pwc.de/",
+    "archived_url": "http://web.archive.org/web/20260625141133/https://www.pwc.de/",
+    "archived_at": "20260625141133",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.ri.se/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.softwareheritage.org/",
+    "archived_url": "http://web.archive.org/web/20260702192042/https://www.softwareheritage.org/",
+    "archived_at": "20260702192042",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.sovereigntechfund.de/",
+    "archived_url": "http://web.archive.org/web/20241029020303/https://www.sovereigntechfund.de/",
+    "archived_at": "20241029020303",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.un.org/digital-emerging-technologies/content/about",
+    "archived_url": "http://web.archive.org/web/20260609001812/https://www.un.org/digital-emerging-technologies/content/about",
+    "archived_at": "20260609001812",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.un.org/digital-emerging-technologies/global-digital-compact",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.undp.org/",
+    "archived_url": "http://web.archive.org/web/20260704142310/https://www.undp.org/",
+    "archived_at": "20260704142310",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unicef.org/",
+    "archived_url": "http://web.archive.org/web/20260705185224/https://www.unicef.org/",
+    "archived_at": "20260705185224",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/",
+    "archived_url": "http://web.archive.org/web/20260702094802/https://www.unopensource.org/",
+    "archived_at": "20260702094802",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/agenda",
+    "archived_url": "http://web.archive.org/web/20260706041457/https://www.unopensource.org/agenda",
+    "archived_at": "20260706041457",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/adriana-groh",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/ahunna-eziakonwa",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/alberto-gago",
+    "archived_url": "http://web.archive.org/web/20260512100613/https://www.unopensource.org/speaker/alberto-gago",
+    "archived_at": "20260512100613",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/amandeep-singh-gill",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/amandeep-singh-gill",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/annisa-paramita",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/armando-manzueta",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/assista-de",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/bakhtiyar-mukhametkaliyev",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/bakhtiyar-mukhametkaliyev",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/bernardo-mariano-joaquim-junior",
+    "archived_url": "http://web.archive.org/web/20260512100517/https://www.unopensource.org/speaker/bernardo-mariano-joaquim-junior",
+    "archived_at": "20260512100517",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/brian-behlendorf",
+    "archived_url": "http://web.archive.org/web/20260512085459/https://www.unopensource.org/speaker/brian-behlendorf",
+    "archived_at": "20260512085459",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/cosmas-luckyson-zavazava",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/frederik-blachetta",
+    "archived_url": "http://web.archive.org/web/20260512095810/https://www.unopensource.org/speaker/frederik-blachetta",
+    "archived_at": "20260512095810",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-amal-el-fallah-seghrouchni",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/hon-amal-el-fallah-seghrouchni",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-amb-audrey-marks",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/hon-amb-audrey-marks",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-liisa-ly-pakosta",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/hon-liisa-ly-pakosta",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-mr-ankhbayar-nyamdorj",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-nthati-moorosi",
+    "archived_url": "http://web.archive.org/web/20260603214448/https://www.unopensource.org/speaker/hon-nthati-moorosi",
+    "archived_at": "20260603214448",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-salima-bah",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/hon-sigmund-freund",
+    "archived_url": "http://web.archive.org/web/20260512101125/https://www.unopensource.org/speaker/hon-sigmund-freund",
+    "archived_at": "20260512101125",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/indra-pradana-singawinata",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/jim-zemlin",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/john-ellis",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/ruth-suehle",
+    "archived_url": "http://web.archive.org/web/20260512085650/https://www.unopensource.org/speaker/ruth-suehle",
+    "archived_at": "20260512085650",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.unopensource.org/speaker/yann-lecun",
+    "archived_url": "http://web.archive.org/web/20260512093559/https://www.unopensource.org/speaker/yann-lecun",
+    "archived_at": "20260512093559",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.wikipedia.org/",
+    "archived_url": "http://web.archive.org/web/20260706073214/https://www.wikipedia.org/",
+    "archived_at": "20260706073214",
+    "status": "archived",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  },
+  {
+    "url": "https://www.worldbank.org/",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-06",
+    "method": "automated-ingestion"
+  }
+]
