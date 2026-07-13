@@ -41,10 +41,10 @@
   },
   {
     "url": "https://element.io/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260711222856/https://element.io/",
+    "archived_at": "20260711222856",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -52,7 +52,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -60,7 +60,7 @@
     "archived_url": "http://web.archive.org/web/20180717064541/https://foundation.mozilla.org/",
     "archived_at": "20180717064541",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -76,7 +76,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -84,7 +84,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -92,7 +92,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -100,7 +100,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -108,7 +108,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -116,7 +116,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -124,7 +124,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -132,7 +132,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -145,10 +145,10 @@
   },
   {
     "url": "https://joinmastodon.org/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260710052954/https://joinmastodon.org/",
+    "archived_at": "20260710052954",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -172,7 +172,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -193,10 +193,10 @@
   },
   {
     "url": "https://opensource.org/ai",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260711032902/https://opensource.org/ai",
+    "archived_at": "20260711032902",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -204,15 +204,15 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
     "url": "https://sdgs.un.org/goals",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260711034723/https://sdgs.un.org/goals",
+    "archived_at": "20260711034723",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -225,10 +225,10 @@
   },
   {
     "url": "https://webtv.un.org/en/asset/k12/k12620x8tm",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260702191019/https://webtv.un.org/en/asset/k12/k12620x8tm",
+    "archived_at": "20260702191019",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -252,7 +252,7 @@
     "archived_url": "http://web.archive.org/web/20260218222324/https://webtv.un.org/en/asset/k15/k1517v486n",
     "archived_at": "20260218222324",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -281,10 +281,10 @@
   },
   {
     "url": "https://webtv.un.org/en/asset/k1i/k1i8jasxz4",
-    "archived_url": "http://web.archive.org/web/20260115105550/https://webtv.un.org/en/asset/k1i/k1i8jasxz4",
-    "archived_at": "20260115105550",
+    "archived_url": "http://web.archive.org/web/20260514161712/https://webtv.un.org/en/asset/k1i/k1i8jasxz4",
+    "archived_at": "20260514161712",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -297,18 +297,18 @@
   },
   {
     "url": "https://webtv.un.org/en/asset/k1s/k1sdg8oy7y",
-    "archived_url": "http://web.archive.org/web/20260210003644/https://webtv.un.org/en/asset/k1s/k1sdg8oy7y",
-    "archived_at": "20260210003644",
+    "archived_url": "http://web.archive.org/web/20260515080722/https://webtv.un.org/en/asset/k1s/k1sdg8oy7y",
+    "archived_at": "20260515080722",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
     "url": "https://webtv.un.org/en/asset/k1v/k1vq934jz6",
-    "archived_url": "http://web.archive.org/web/20260211193906/https://webtv.un.org/en/asset/k1v/k1vq934jz6",
-    "archived_at": "20260211193906",
-    "status": "archived",
-    "retrieved": "2026-07-06",
+    "archived_url": "",
+    "archived_at": "",
+    "status": "submitted",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -353,10 +353,10 @@
   },
   {
     "url": "https://www.drupal.org/association",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260712051617/https://www.drupal.org/association",
+    "archived_at": "20260712051617",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -380,23 +380,23 @@
     "archived_url": "http://web.archive.org/web/20250122104055/https://www.ilo.org/publications/mind-ai-divide",
     "archived_at": "20250122104055",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
     "url": "https://www.itu.int/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260131175331/https://www.itu.int/",
+    "archived_at": "20260131175331",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
     "url": "https://www.linkedin.com/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260712213533/https://www.linkedin.com/",
+    "archived_at": "20260712213533",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -425,10 +425,10 @@
   },
   {
     "url": "https://www.ri.se/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260702214957/https://www.ri.se/",
+    "archived_at": "20260702214957",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -444,7 +444,7 @@
     "archived_url": "http://web.archive.org/web/20241029020303/https://www.sovereigntechfund.de/",
     "archived_at": "20241029020303",
     "status": "archived",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -457,10 +457,10 @@
   },
   {
     "url": "https://www.un.org/digital-emerging-technologies/global-digital-compact",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260623145400/https://www.un.org/digital-emerging-technologies/global-digital-compact",
+    "archived_at": "20260623145400",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -500,7 +500,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -508,7 +508,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -532,15 +532,15 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
     "url": "https://www.unopensource.org/speaker/armando-manzueta",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260706041510/https://www.unopensource.org/speaker/armando-manzueta",
+    "archived_at": "20260706041510",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -548,7 +548,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -580,7 +580,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -620,7 +620,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -633,10 +633,10 @@
   },
   {
     "url": "https://www.unopensource.org/speaker/hon-salima-bah",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20260706041510/https://www.unopensource.org/speaker/hon-salima-bah",
+    "archived_at": "20260706041510",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -652,7 +652,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -660,7 +660,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -668,7 +668,7 @@
     "archived_url": "",
     "archived_at": "",
     "status": "submitted",
-    "retrieved": "2026-07-06",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   },
   {
@@ -697,10 +697,10 @@
   },
   {
     "url": "https://www.worldbank.org/",
-    "archived_url": "",
-    "archived_at": "",
-    "status": "submitted",
-    "retrieved": "2026-07-06",
+    "archived_url": "http://web.archive.org/web/20250829001434/http://www.worldbank.org/",
+    "archived_at": "20250829001434",
+    "status": "archived",
+    "retrieved": "2026-07-13",
     "method": "automated-ingestion"
   }
 ]
