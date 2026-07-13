@@ -1,5 +1,54 @@
 [
   {
+    "id": "mastodon:https://mstdn.social/@swheritage/116885925034311849",
+    "platform": "mastodon",
+    "url": "https://mstdn.social/@swheritage/116885925034311849",
+    "author": "swheritage@mstdn.social",
+    "author_name": "Software Heritage",
+    "author_url": "https://mstdn.social/@swheritage",
+    "posted": "2026-07-08T19:07:54.000Z",
+    "excerpt": "Software Heritage at UN Open Source Week 2026 https://www. softwareheritage.org/2026/07/0 8/software-heritage-un-open-source-week-2026/ # FOSS # UNOSW",
+    "hashtags": [
+      "foss",
+      "unosw"
+    ],
+    "retrieved": "2026-07-13",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://mastodon.social/@amazeeai/116874750445130068",
+    "platform": "mastodon",
+    "url": "https://mastodon.social/@amazeeai/116874750445130068",
+    "author": "amazeeai",
+    "author_name": "amazee.ai",
+    "author_url": "https://mastodon.social/@amazeeai",
+    "posted": "2026-07-06T19:46:03.791Z",
+    "excerpt": "# UNOpenSourceWeek revealed 3 critical AI problems enterprises face: → Claims-based AI: No verification of where your data goes → Vendor lock-in: Single-provider APIs create massive risk → Governance gaps: The \"harness\" matters more than the model Our Private # AIAPIGateway solv…",
+    "hashtags": [
+      "aiapigateway",
+      "unopensourceweek"
+    ],
+    "retrieved": "2026-07-13",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://mastodon.social/@amazeeio/116874239261411502",
+    "platform": "mastodon",
+    "url": "https://mastodon.social/@amazeeio/116874239261411502",
+    "author": "amazeeio",
+    "author_name": "amazee.io",
+    "author_url": "https://mastodon.social/@amazeeio",
+    "posted": "2026-07-06T17:36:03.752Z",
+    "excerpt": "# UNOpenSourceWeek revealed 3 critical # AI problems enterprises face: → Claims-based AI: No verification of where your data goes → Vendor lock-in: Single-provider APIs create massive risk → Governance gaps: The \"harness\" matters more than the model The @ amazeeai Private # AIAP…",
+    "hashtags": [
+      "ai",
+      "aiapigateway",
+      "unopensourceweek"
+    ],
+    "retrieved": "2026-07-13",
+    "method": "automated-ingestion"
+  },
+  {
     "id": "mastodon:https://mastodon.social/@sovtechfund/116856150754252305",
     "platform": "mastodon",
     "url": "https://mastodon.social/@sovtechfund/116856150754252305",
