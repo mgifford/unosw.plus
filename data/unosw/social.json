@@ -1,5 +1,110 @@
 [
   {
+    "id": "mastodon:https://fosstodon.org/@LPI/117066112976618964",
+    "platform": "mastodon",
+    "url": "https://fosstodon.org/@LPI/117066112976618964",
+    "author": "LPI@fosstodon.org",
+    "author_name": "Linux Professional Institute",
+    "author_url": "https://fosstodon.org/@LPI",
+    "posted": "2026-08-09T14:52:04.000Z",
+    "excerpt": "Meaningful # opensource work doesn't happen in isolation. 🌍🐧 The UN Tech Over Hackathon, the opening event of UN Open Source Week 2026, showed how collaboration drives impact, with Linux Professional Institute (LPI) helping connect stakeholders across the FOSS ecosystem. Read th…",
+    "hashtags": [
+      "foss",
+      "hackathon",
+      "lpi",
+      "opensource",
+      "osposforgood",
+      "un",
+      "unopensourceweek",
+      "untechoverhackathon"
+    ],
+    "retrieved": "2026-08-24",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://fosstodon.org/@LPI/117032479751014771",
+    "platform": "mastodon",
+    "url": "https://fosstodon.org/@LPI/117032479751014771",
+    "author": "LPI@fosstodon.org",
+    "author_name": "Linux Professional Institute",
+    "author_url": "https://fosstodon.org/@LPI",
+    "posted": "2026-08-03T16:18:41.000Z",
+    "excerpt": "Four Days. Four Venues. One Goal. 🌍🐧 The UN Tech Over Hackathon showed how # opensource thrives through collaboration among governments, # UN entities, academia, industry, and the global community. Learn more from Linux Professional Institute (LPI)’s Elzbieta Godlewska: https://…",
+    "hashtags": [
+      "foss",
+      "hackathon",
+      "lpi",
+      "opensource",
+      "osposforgood",
+      "un",
+      "unopensourceweek",
+      "untechoverhackathon"
+    ],
+    "retrieved": "2026-08-24",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://mastodon.social/@amazeeai/117003807868579366",
+    "platform": "mastodon",
+    "url": "https://mastodon.social/@amazeeai/117003807868579366",
+    "author": "amazeeai",
+    "author_name": "amazee.ai",
+    "author_url": "https://mastodon.social/@amazeeai",
+    "posted": "2026-07-29T14:47:03.781Z",
+    "excerpt": "AI models are good enough. The real enterprise AI bottlenecks are # AIGovernance , # AISovereignty , and vendor lock-in. 🌐 Our AI Ambassador, Matthew Saunders, attended # UNOpenSourceWeek and brought back crucial lessons on why scaling AI safely requires moving beyond \"claims-ba…",
+    "hashtags": [
+      "aigovernance",
+      "aiinfrastructure",
+      "aisovereignty",
+      "unopensourceweek"
+    ],
+    "retrieved": "2026-08-24",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://fosstodon.org/@LPI/116969901825855144",
+    "platform": "mastodon",
+    "url": "https://fosstodon.org/@LPI/116969901825855144",
+    "author": "LPI@fosstodon.org",
+    "author_name": "Linux Professional Institute",
+    "author_url": "https://fosstodon.org/@LPI",
+    "posted": "2026-07-23T15:04:18.000Z",
+    "excerpt": "Linux Professional Institute (LPI) participated in the UN Tech Over Hackathon, the opening event of UN Open Source Week 2026, as a co-organizer and sponsor. 🌍🐧 Read Elzbieta Godlewska’s recap of the event 👇 https:// lpi.org/ki9x # UN # UNopensourceweek # hackathon # UNTechOverHa…",
+    "hashtags": [
+      "foss",
+      "hackathon",
+      "lpi",
+      "opensource",
+      "osposforgood",
+      "un",
+      "unopensourceweek",
+      "untechoverhackathon"
+    ],
+    "retrieved": "2026-08-24",
+    "method": "automated-ingestion"
+  },
+  {
+    "id": "mastodon:https://fosstodon.org/@LPI/116918776149796733",
+    "platform": "mastodon",
+    "url": "https://fosstodon.org/@LPI/116918776149796733",
+    "author": "LPI@fosstodon.org",
+    "author_name": "Linux Professional Institute",
+    "author_url": "https://fosstodon.org/@LPI",
+    "posted": "2026-07-14T14:22:22.000Z",
+    "excerpt": "Meaningful # opensource work doesn't happen in isolation. 🌍🐧 The UN Tech Over Hackathon, the opening event of UN Open Source Week 2026, showed how collaboration drives impact, with Linux Professional Institute (LPI) helping connect stakeholders across the FOSS ecosystem. Read th…",
+    "hashtags": [
+      "foss",
+      "hackathon",
+      "lpi",
+      "opensource",
+      "un",
+      "unopensourceweek",
+      "untechoverhackathon"
+    ],
+    "retrieved": "2026-08-24",
+    "method": "automated-ingestion"
+  },
+  {
     "id": "mastodon:https://mstdn.social/@swheritage/116885925034311849",
     "platform": "mastodon",
     "url": "https://mstdn.social/@swheritage/116885925034311849",
